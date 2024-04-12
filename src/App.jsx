@@ -1,27 +1,29 @@
-import SignIn from "./components/SignIn"
-import SignUp from "./components/SignUp"
-import { Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Profile from "./pages/Profile"
-// import Page1 from "./pages/Page1"
-// import Page2 from "./pages/Page2"
-// import Page3 from "./pages/Page3"
-
-
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import { Routes, Route, Navigate } from 'react-router-dom'; // Import Navigate for redirection
+import Header from './components/Header';
+import Profile from "./pages/Profile";
+import { useSelector } from "react-redux";
+import Main from "./pages/Main";
 
 function App() {
+  const { isLoggedIn } = useSelector((state) => state.login);
 
   return (
     <div className="whole-cont">
       <Header />
       <Routes>
+        <Route path="/" element={<Main />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path='/profile' element={<Profile />} />
+        {isLoggedIn ? (
+          <Route path="/profile" element={<Profile />} />
+        ) : (
+          <Route path="/" element={<Navigate to="/" replace />} />
+        )}
       </Routes>
     </div>
   )
 }
 
-export default App
+export default App;

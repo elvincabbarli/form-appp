@@ -26,7 +26,7 @@ function Tabs() {
             <Tab.Pane eventKey="first">
               <span>Name: </span> <b>{name}</b>
               <br />
-              <span>Last Name: </span> <b>{lastName}</b>
+              <span>Last Name: </span> <b>{lastName}</b><br />
               <span>Username: </span> <b>{username}</b> <br />
               <span>Email: </span> <b>{email}</b>
             </Tab.Pane>

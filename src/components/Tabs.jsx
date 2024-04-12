@@ -24,10 +24,10 @@ function Tabs() {
         <Col sm={9}>
           <Tab.Content>
             <Tab.Pane eventKey="first">
-              <span>Username: </span> <b>{username}</b> <br />
-              <span>Last Name: </span> <b>{lastName}</b> <br />
-              <span>Email: </span> <b>{email}</b> <br />
               <span>Name: </span>
+              <span>Last Name: </span> <b>{lastName}</b> <br />
+              <span>Username: </span> <b>{username}</b> <br />
+              <span>Email: </span> <b>{email}</b> <br />
               <b>{name}</b>
             </Tab.Pane>
             <Tab.Pane eventKey="second">Second tab content</Tab.Pane>

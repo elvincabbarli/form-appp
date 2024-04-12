@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
 function Copyright(props) {
     return (
@@ -32,8 +33,7 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
     const navigate = useNavigate()
-
-
+    const [checked, setIsChecked] = useState(false)
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -41,16 +41,20 @@ export default function SignUp() {
             email: data.get('email'),
             password: data.get('password'),
             username: data.get('username'),
-            lastName: data.get('lastName'),
+            last_name: data.get('lastName'),
+            first_name: data.get('firstName'),
+            get_email: checked
         };
 
 
         try {
-            const response = await axios.post('http://your-backend-api.com/register', formData);
-            console.log('Registration successful!', response.data);
+            const response = await axios.post('https://fast-quora.onrender.com/register', formData, {
+                mode: 'no-cors'
+            });
             navigate('/signin')
+            return response;
         } catch (error) {
-            console.error('Registration failed!', error.response.data);
+            console.error('Registration failed!', error);
         }
     };
 
@@ -128,7 +132,7 @@ export default function SignUp() {
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                    control={<Checkbox onChange={(e) => setIsChecked(e.target.checked)} checked={checked} id='getEmail' name='getEmail' color="primary" />}
                                     label="Mən e-poçt vasitəsilə bildirimləri və yeniləmələr almaq istəyirəm."
                                 />
                             </Grid>

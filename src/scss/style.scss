@@ -34,3 +34,24 @@ li {
     font-weight: bold;
   }
 }
+
+.tabs{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 15px 0;
+
+  a{
+    padding: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .active{
+    background-color: red;
+    color: #fff;
+  }
+}
+
+

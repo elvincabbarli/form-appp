@@ -15,9 +15,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { loginSuccess } from "../store/loginSlice";
-
 
 function Copyright(props) {
   return (
@@ -43,7 +42,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
   const navigate = useNavigate();
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -67,10 +66,8 @@ export default function SignIn() {
         formData,
         config
       );
-      console.log(response)
-      const token = response.data.access_token;
-      localStorage.setItem("token", token);
-        dispatch(loginSuccess(response.data))
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
+      dispatch(loginSuccess(response.data));
       if (response.status === 200) {
         navigate("/profile");
       }

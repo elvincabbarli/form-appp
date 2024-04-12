@@ -1,37 +1,41 @@
-/* eslint-disable no-unused-vars */
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import Col from "react-bootstrap/Col";
+import Nav from "react-bootstrap/Nav";
+import Row from "react-bootstrap/Row";
+import Tab from "react-bootstrap/Tab";
+import { useSelector } from "react-redux";
 
-function Tabs({ tabs }) {
-    const [activeTab, setActiveTab] = useState(0);
-    const handleTabClick = (index) => {
-        setActiveTab(index);
-    };
-
-    return (
-        <div className='tabs'>
-            {tabs.map((tab, index) => (
-                <NavLink
-                    key={index}
-                    to={tab.path}
-                    onClick={() => handleTabClick(index)}
-                >
-                    {tab.label}
-                </NavLink>
-            ))}
-        </div>
-    );
+function Tabs() {
+  const { username, name, lastName, email } = useSelector(
+    (state) => state.login
+  );
+  return (
+    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+      <Row>
+        <Col sm={3}>
+          <Nav variant="pills" className="flex-column">
+            <Nav.Item>
+              <Nav.Link eventKey="first">Məlumatlarım</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="second">Maraq Sahələri</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+        <Col sm={9}>
+          <Tab.Content>
+            <Tab.Pane eventKey="first">
+              <span>Username: </span> <b>{username}</b> <br />
+              <span>Last Name: </span> <b>{lastName}</b> <br />
+              <span>Email: </span> <b>{email}</b> <br />
+              <span>Name: </span>
+              <b>{name}</b>
+            </Tab.Pane>
+            <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
+          </Tab.Content>
+        </Col>
+      </Row>
+    </Tab.Container>
+  );
 }
-
-
-Tabs.propTypes = {
-    tabs: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            path: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-};
 
 export default Tabs;

@@ -2,12 +2,9 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
-import { useSelector } from "react-redux";
+import PersonalIno from "./PersonalIno";
 
 function Tabs() {
-  const { username, name, lastName, email } = useSelector(
-    (state) => state.login
-  );
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
       <Row>
@@ -24,11 +21,7 @@ function Tabs() {
         <Col sm={9}>
           <Tab.Content>
             <Tab.Pane eventKey="first">
-              <span>Name: </span> <b>{name}</b>
-              <br />
-              <span>Last Name: </span> <b>{lastName}</b><br />
-              <span>Username: </span> <b>{username}</b> <br />
-              <span>Email: </span> <b>{email}</b>
+              <PersonalIno />
             </Tab.Pane>
             <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
           </Tab.Content>

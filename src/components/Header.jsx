@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <div className="header-cont">
       <Link className="logo" to="/">
-        Logo
+        Form
       </Link>
       <div className="header-links">
 

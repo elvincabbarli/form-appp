@@ -2,7 +2,7 @@ import Tabs from "../components/Tabs";
 
 const Profile = () => {
   return (
-    <div>
+    <div className="profile-cont">
       <Tabs />
     </div>
   );

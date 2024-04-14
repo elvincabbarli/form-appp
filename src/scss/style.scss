@@ -5,7 +5,7 @@
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 li {
@@ -170,5 +170,11 @@ table {
   .welcome {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .header-cont,
+  .profile-cont {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }

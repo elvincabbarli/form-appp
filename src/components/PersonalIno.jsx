@@ -57,9 +57,11 @@ const PersonalIno = () => {
               <img src={profPic} width="200" alt="Default" />
             )}
           </div>
-          <button className="upload-pic" onClick={handleUpload}>
-            Yadda Saxla
-          </button>
+          {selectedFile ? (
+            <button className="upload-pic" onClick={handleUpload}>
+              Yadda Saxla
+            </button>
+          ) : null}
         </div>
         <div>
           <div className="welcome-note">

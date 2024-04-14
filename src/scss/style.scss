@@ -166,6 +166,32 @@ table {
   border-radius: 10px 5px;
 }
 
+.interests-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.interests-heading {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.interest-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.interest-checkbox {
+  margin-right: 5px;
+}
+
+.selected-interests {
+  margin-top: 10px;
+  font-style: italic;
+}
+
 @media screen and (max-width: 768px) {
   .welcome {
     flex-wrap: wrap;

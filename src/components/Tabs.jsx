@@ -3,6 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import PersonalIno from "./PersonalIno";
+import InterestsField from "./InterestsField";
 
 function Tabs() {
   return (
@@ -23,7 +24,9 @@ function Tabs() {
             <Tab.Pane eventKey="first">
               <PersonalIno />
             </Tab.Pane>
-            <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
+            <Tab.Pane eventKey="second">
+              <InterestsField />
+            </Tab.Pane>
           </Tab.Content>
         </Col>
       </Row>

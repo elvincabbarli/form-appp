@@ -44,7 +44,7 @@ const PersonalIno = () => {
           <div className="profile-pic">
             <label className="-label" htmlFor="file">
               <span className="glyphicon glyphicon-camera"></span>
-              <span>Şəkili Əlavə Et</span>
+              <span>Şəkil Əlavə Et</span>
             </label>
             <input id="file" type="file" onChange={handleFileChange} />
             {selectedFile ? (
@@ -66,7 +66,7 @@ const PersonalIno = () => {
         <div>
           <div className="welcome-note">
             <span className="welcome-span">Xoş Gəlmisiniz: </span>{" "}
-            <span>{name}</span> <br />
+            <span>{username}</span> <br />
           </div>
           <div className="welcome-note">
             <span className="nots">Bildirim: </span>
@@ -79,12 +79,12 @@ const PersonalIno = () => {
         <table>
           <tbody>
             <tr>
-              <td className="info-label">Last Name:</td>
+              <td className="info-label">Soyad: </td>
               <td className="info-value">{lastName}</td>
             </tr>
             <tr>
-              <td className="info-label">Username:</td>
-              <td className="info-value">{username}</td>
+              <td className="info-label">Ad: </td>
+              <td className="info-value">{name}</td>
             </tr>
             <tr>
               <td className="info-label">Email:</td>

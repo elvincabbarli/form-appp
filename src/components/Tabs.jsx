@@ -6,6 +6,7 @@ import PersonalIno from "./PersonalIno";
 import InterestsField from "./InterestsField";
 import TextEditor from "./Editor";
 import MyPosts from "../pages/MyPosts";
+import MyInterests from "../pages/MyInterests";
 
 function Tabs() {
   return (
@@ -40,7 +41,7 @@ function Tabs() {
               <InterestsField />
             </Tab.Pane>
             <Tab.Pane eventKey="second">
-              <h1>Hi </h1>
+              <MyInterests />
             </Tab.Pane>
             <Tab.Pane eventKey="third">
               <h1>Third</h1>

@@ -206,20 +206,38 @@ table {
   min-height: 250px !important;
 }
 
-.posts {
+.posts,
+.main-posts {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
 }
 
+// .main-posts{
+//   display: flex;
+//   flex-wrap: wrap;
+// }
+
 .singlePost {
+  max-width: 250px;
+  width: 100%;
   border: 1px solid black;
   margin: 15px 0;
   padding: 15px;
+  border-radius: 10px 5px;
+}
+
+.post-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {
-  .welcome {
+  .welcome,
+  .posts,
+  .main-posts {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -228,5 +246,18 @@ table {
   .profile-cont {
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  .post-heading {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .singlePost {
+   max-width: initial;
+  }
+
+  .main-cont {
+    padding: 0 15px;
   }
 }

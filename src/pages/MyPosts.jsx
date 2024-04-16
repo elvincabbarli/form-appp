@@ -47,7 +47,7 @@ const MyPosts = () => {
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
               <p>Category: {post.category_name}</p>
 
-              <button>Delete</button>
+              <button className="upload-pic">Delete</button>
             </li>
           ))}
         </ul>

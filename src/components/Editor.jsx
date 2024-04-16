@@ -5,6 +5,8 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { postSuccess } from "../store/postSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TextEditor = () => {
   const [value, setValue] = useState("");
@@ -35,13 +37,15 @@ const TextEditor = () => {
       )
       .then((response) => {
         // console.log("Value sent to server successfully:", response.data);
-        dispatch(postSuccess(response.data));
         setHeading("");
         setValue("");
         setCategoryId("");
+        toast.success("Paylaşıldı");
+        // dispatch(postSuccess(response.data));
         // Optionally, you can perform actions after successfully sending data to the server
       })
       .catch((error) => {
+        toast.error("Xeta Baş verdi");
         console.error("Error sending value to server:", error);
         // Optionally, you can handle errors here
       });
@@ -49,26 +53,29 @@ const TextEditor = () => {
 
   return (
     <div>
-      <label htmlFor="heading">
-        Başlıq
-        <input
-          type="text"
-          id="heading"
-          value={heading}
-          onChange={(e) => setHeading(e.target.value)}
-        />
-      </label>
+      <div className="post-heading">
+        <div>
+          <label htmlFor="heading">Başlıq</label> &nbsp;&nbsp;
+          <input
+            type="text"
+            id="heading"
+            value={heading}
+            onChange={(e) => setHeading(e.target.value)}
+            placeholder="Post başlığı"
+          />
+        </div>
 
-      <select
-        name="category"
-        id="category"
-        value={categoryId}
-        onChange={(e) => setCategoryId(e.target.value)}
-      >
-        <option value="">Select</option>
-        <option value="1">Select2</option>
-        <option value="2">Select3</option>
-      </select>
+        <select
+          name="category"
+          id="category"
+          value={categoryId}
+          onChange={(e) => setCategoryId(e.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="1">Select2</option>
+          <option value="2">Select3</option>
+        </select>
+      </div>
 
       <ReactQuill value={value} onChange={handleChange} theme="snow" />
       <button
@@ -78,6 +85,7 @@ const TextEditor = () => {
       >
         Paylaş
       </button>
+      <ToastContainer />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Tab from "react-bootstrap/Tab";
 import PersonalIno from "./PersonalIno";
 import InterestsField from "./InterestsField";
 import TextEditor from "./Editor";
+import MyPosts from "../pages/MyPosts";
 
 function Tabs() {
   return (
@@ -45,7 +46,7 @@ function Tabs() {
               <h1>Third</h1>
             </Tab.Pane>
             <Tab.Pane eventKey="fourth">
-              <h1>Fourth</h1>
+              <MyPosts />
             </Tab.Pane>
             <Tab.Pane eventKey="fifth">
               <h1>Fifth</h1>

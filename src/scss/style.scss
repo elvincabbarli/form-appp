@@ -12,6 +12,11 @@ li {
   list-style-type: none;
 }
 
+ol,
+ul {
+  padding-left: 0 !important;
+}
+
 .whole-cont {
   max-width: 1400px;
   width: 100%;
@@ -195,6 +200,22 @@ table {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.ql-editor {
+  min-height: 250px !important;
+}
+
+.posts {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.singlePost {
+  border: 1px solid black;
+  margin: 15px 0;
+  padding: 15px;
 }
 
 @media screen and (max-width: 768px) {

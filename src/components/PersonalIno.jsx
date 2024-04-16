@@ -13,8 +13,6 @@ const PersonalIno = () => {
     setSelectedFile(event.target.files[0]);
   };
 
-  console.log(selectedFile);
-
   const handleUpload = () => {
     if (selectedFile) {
       const formData = new FormData();

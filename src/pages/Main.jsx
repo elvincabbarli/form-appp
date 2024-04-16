@@ -1,29 +1,25 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const Main = () => {
 
   const [allPosts, setAllPosts] = useState([]);
 
-  const { token } = useSelector((state) => state.login);
+  // const { token } = useSelector((state) => state.login);
 
-  const myToken = token;
+  // const myToken = token;
 
   // Fetch posts when the component mounts
   useEffect(() => {
     fetchAllPosts();
-  }, [myToken]);
+  }, []);
 
   // Function to fetch posts
   const fetchAllPosts = async () => {
     try {
       const response = await fetch("https://fast-quora.onrender.com/posts", {
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${myToken}`,
-          "Content-Type": "application/json",
-        },
       });
 
       if (!response.ok) {

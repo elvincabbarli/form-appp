@@ -36,18 +36,14 @@ const TextEditor = () => {
         }
       )
       .then((response) => {
-        // console.log("Value sent to server successfully:", response.data);
         setHeading("");
         setValue("");
         setCategoryId("");
         toast.success("Paylaşıldı");
-        // dispatch(postSuccess(response.data));
-        // Optionally, you can perform actions after successfully sending data to the server
       })
       .catch((error) => {
         toast.error("Xeta Baş verdi");
         console.error("Error sending value to server:", error);
-        // Optionally, you can handle errors here
       });
   };
 

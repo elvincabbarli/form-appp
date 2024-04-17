@@ -59,7 +59,7 @@ function InterestsField() {
           },
         }
       );
-      console.log("Response:", response.data);
+      // console.log("Response:", response.data);
     } catch (error) {
       console.error("Error:", error);
     }

@@ -1,64 +1,38 @@
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
-import Tab from "react-bootstrap/Tab";
-import PersonalIno from "./PersonalIno";
-import InterestsField from "./InterestsField";
-import TextEditor from "./Editor";
-import MyPosts from "../pages/MyPosts";
-import MyInterests from "../pages/MyInterests";
+import { Link, Outlet } from "react-router-dom";
 
 function Tabs() {
   return (
-    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+    <>
+      {" "}
       <Row>
         <Col sm={2}>
-          <Nav variant="pills" className="flex-column">
+          <Nav>
             <Nav.Item>
-              <Nav.Link eventKey="first">Məlumatlarım</Nav.Link>
+              <Link to="/profile/personal">Məlumatlarım</Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="second">Maraq Sahələri</Nav.Link>
+              <Link to="/profile/myinterests">Maraq Sahələri</Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="third">Bildirimlər</Nav.Link>
+              <Link to="/profile/notifications">Bildirimlər</Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="six">Post Paylaş</Nav.Link>
+              <Link to="/profile/addpost">Post Paylaş</Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="fourth">Postların</Nav.Link>
+              <Link to="/profile/myposts">Postların</Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="fifth">Takipçilər</Nav.Link>
+              <Link to="/profile/followers">Takipçilər</Link>
             </Nav.Item>
           </Nav>
         </Col>
-        <Col sm={10}>
-          <Tab.Content>
-            <Tab.Pane eventKey="first">
-              <PersonalIno />
-              <InterestsField />
-            </Tab.Pane>
-            <Tab.Pane eventKey="second">
-              <MyInterests />
-            </Tab.Pane>
-            <Tab.Pane eventKey="third">
-              <h1>Third</h1>
-            </Tab.Pane>
-            <Tab.Pane eventKey="fourth">
-              <MyPosts />
-            </Tab.Pane>
-            <Tab.Pane eventKey="fifth">
-              <h1>Fifth</h1>
-            </Tab.Pane>
-            <Tab.Pane eventKey="six">
-              <TextEditor />
-            </Tab.Pane>
-          </Tab.Content>
-        </Col>
       </Row>
-    </Tab.Container>
+      <Outlet />
+    </>
   );
 }
 

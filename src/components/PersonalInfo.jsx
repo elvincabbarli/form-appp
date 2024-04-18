@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import profPic from "../assets/prof.jpg";
 import { useState } from "react";
 
-const PersonalIno = () => {
+const PersonalInfo = () => {
   const { username, name, lastName, email } = useSelector(
-    (state) => state.login
+    (state) => state.login,
   );
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -96,4 +96,4 @@ const PersonalIno = () => {
   );
 };
 
-export default PersonalIno;
+export default PersonalInfo;

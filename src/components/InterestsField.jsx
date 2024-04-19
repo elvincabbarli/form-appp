@@ -3,14 +3,16 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPersonalInterests } from "../store/interestSlice";
 
 function InterestsField() {
   const { token } = useSelector((state) => state.login);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-
+  const dispatch = useDispatch()
   useEffect(() => {
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -60,6 +62,9 @@ function InterestsField() {
           },
         }
       );
+
+      dispatch(fetchPersonalInterests())
+
       // console.log("Response:", response.data);
     } catch (error) {
       console.error("Error:", error);

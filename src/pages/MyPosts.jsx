@@ -19,7 +19,11 @@ const MyPosts = () => {
   }
 
   const handleDelete = (postId) => {
-    dispatch(deletePost(postId));
+    dispatch(deletePost(postId))
+      .unwrap()
+      .finally(() => {
+        dispatch(fetchPersonalPosts());
+      });
     // Update the local state (remove the deleted post)
     // You can do this by filtering out the post with the matching ID
     // Example:
@@ -37,7 +41,12 @@ const MyPosts = () => {
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
               <p>Category: {post.category_name}</p>
 
-              <button onClick={() => handleDelete(post.post_id)} className="upload-pic">Delete</button>
+              <button
+                onClick={() => handleDelete(post.post_id)}
+                className="upload-pic"
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

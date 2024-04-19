@@ -9,6 +9,8 @@ import MyInterests from "./pages/MyInterests";
 import PersonalInfo from "./components/PersonalInfo"; // Fixed typo
 import MyPosts from "./pages/MyPosts";
 import AddPost from "./components/AddPost";
+import Notifications from "./pages/Notifications";
+import Followers from "./pages/Followers";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.login);
@@ -27,6 +29,8 @@ function App() {
             <Route path="/profile/personal" element={<PersonalInfo />} />
             <Route path="/profile/myposts" element={<MyPosts />} />
             <Route path="/profile/addpost" element={<AddPost />} />
+            <Route path="/profile/notifications" element={<Notifications />} />
+            <Route path="/profile/followers" element={<Followers />} />
           </Route>
 
 

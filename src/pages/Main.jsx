@@ -18,7 +18,7 @@ const Main = () => {
       <div>
         <ul className="main-posts">
           {postsAll.map((post, index) => (
-            <li className="singlePost" key={index}>
+            <li className="main-page-posts" key={index}>
               <h3>{post.heading}</h3>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
               <p>Category: {post.category_name}</p>

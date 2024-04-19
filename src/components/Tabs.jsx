@@ -11,12 +11,42 @@ function Tabs() {
   return (
     <div className="top-container">
       <div className="side-links">
-        <Link to="/profile/personal" className={isActiveLink("/profile/personal")}>Məlumatlarım</Link>
-        <Link to="/profile/myinterests" className={isActiveLink("/profile/myinterests")}>Maraq Sahələri</Link>
-        <Link to="/profile/notifications" className={isActiveLink("/profile/notifications")}>Bildirimlər</Link>
-        <Link to="/profile/addpost" className={isActiveLink("/profile/addpost")}>Post Paylaş</Link>
-        <Link to="/profile/myposts" className={isActiveLink("/profile/myposts")}>Postların</Link>
-        <Link to="/profile/followers" className={isActiveLink("/profile/followers")}>Takipçilər</Link>
+        <Link
+          to="/profile/personal"
+          className={isActiveLink("/profile/personal")}
+        >
+          Məlumatlarım
+        </Link>
+        <Link
+          to="/profile/myinterests"
+          className={isActiveLink("/profile/myinterests")}
+        >
+          Maraq Sahələri
+        </Link>
+        <Link
+          to="/profile/notifications"
+          className={isActiveLink("/profile/notifications")}
+        >
+          Bildirimlər
+        </Link>
+        <Link
+          to="/profile/addpost"
+          className={isActiveLink("/profile/addpost")}
+        >
+          Post Paylaş
+        </Link>
+        <Link
+          to="/profile/myposts"
+          className={isActiveLink("/profile/myposts")}
+        >
+          Postların
+        </Link>
+        <Link
+          to="/profile/followers"
+          className={isActiveLink("/profile/followers")}
+        >
+          Takipçilər
+        </Link>
       </div>
       <div className="side-cont">
         <Outlet />

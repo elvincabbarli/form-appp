@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPersonalInterests } from "../store/interestSlice";
+import { GetAxios } from "../utils/getAxios";
 
 function InterestsField() {
   const { token } = useSelector((state) => state.login);
@@ -15,14 +16,7 @@ function InterestsField() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://fast-quora.onrender.com/category",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await GetAxios('https://fast-quora.onrender.com/category', token)
         setData(response.data);
       } catch (error) {
         setError(error);
@@ -63,7 +57,6 @@ function InterestsField() {
         }
       );
 
-      dispatch(fetchPersonalInterests())
 
       // console.log("Response:", response.data);
     } catch (error) {

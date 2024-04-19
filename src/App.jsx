@@ -21,12 +21,16 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         {isLoggedIn ? (
+
           <Route path="/profile" element={<Profile />}>
-            <Route path="myinterests" element={<MyInterests />} />
-            <Route path="personal" element={<PersonalInfo />} />
-            <Route path="myposts" element={<MyPosts />} />
-            <Route path="addpost" element={<TextEditor />} />
+            <Route path="/profile/myinterests" element={<MyInterests />} />
+            <Route path="/profile/personal" element={<PersonalInfo />} />
+            <Route path="/profile/myposts" element={<MyPosts />} />
+            <Route path="/profile/addpost" element={<TextEditor />} />
           </Route>
+
+
+
         ) : (
           <Route path="/" element={<Navigate to="/" replace />} />
         )}

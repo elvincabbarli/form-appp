@@ -8,7 +8,7 @@ const MyPosts = () => {
 
   useEffect(() => {
     dispatch(fetchPersonalPosts());
-  }, [dispatch]);
+  }, []);
 
   if (loading) {
     return (

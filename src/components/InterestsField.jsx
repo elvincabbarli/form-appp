@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import axios from "axios";
@@ -27,7 +28,7 @@ function InterestsField() {
     };
 
     fetchData();
-  }, [token]);
+  }, []);
 
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import profPic from "../assets/prof.jpg";
 import { useState } from "react";
+import InterestsField from "./InterestsField";
 
 const PersonalInfo = () => {
   const { username, name, lastName, email } = useSelector(
@@ -92,6 +93,8 @@ const PersonalInfo = () => {
         </table>
       </div>
       <br />
+
+      <InterestsField />
     </div>
   );
 };

@@ -8,8 +8,8 @@ a {
   text-decoration: none !important;
 }
 
-p{
-  margin-bottom: 0;
+p {
+  margin-bottom: 0 !important;
 }
 
 li {
@@ -245,7 +245,7 @@ table {
   }
 }
 
-.myInterests{
+.myInterests {
   padding: 5px 10px;
   border: 1px solid #555;
   border-radius: 5px;
@@ -253,8 +253,8 @@ table {
   display: flex;
   gap: 15px;
   align-items: center;
-  
-  button{
+
+  button {
     border: none;
     background-color: #fff;
     font-weight: bold;

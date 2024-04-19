@@ -32,13 +32,14 @@ const MyInterests = () => {
 
 
     return (
-        <div>
+        <div className="myInterest">
             <h2>My Interests</h2>
             <div>
                 <ul className="posts">
                     {personalInterest?.map((post, index) => (
-                        <li className="singlePost" key={index}>
-                            <p>Category: {post}</p>
+                        <li className="myInterests" key={index}>
+                            <p>{post}</p> -
+                            <button>✘</button>
                         </li>
                     ))}
                 </ul>

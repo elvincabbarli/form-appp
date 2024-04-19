@@ -8,7 +8,7 @@ import Main from "./pages/Main";
 import MyInterests from "./pages/MyInterests";
 import PersonalInfo from "./components/PersonalInfo"; // Fixed typo
 import MyPosts from "./pages/MyPosts";
-import TextEditor from "./components/Editor";
+import AddPost from "./components/AddPost";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.login);
@@ -26,7 +26,7 @@ function App() {
             <Route path="/profile/myinterests" element={<MyInterests />} />
             <Route path="/profile/personal" element={<PersonalInfo />} />
             <Route path="/profile/myposts" element={<MyPosts />} />
-            <Route path="/profile/addpost" element={<TextEditor />} />
+            <Route path="/profile/addpost" element={<AddPost />} />
           </Route>
 
 

@@ -232,6 +232,31 @@ table {
   justify-content: space-between;
   margin-bottom: 15px;
   flex-wrap: wrap;
+
+  input,
+  select {
+    padding: 5px 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+  }
+}
+
+.myInterests{
+  padding: 5px 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  margin-top: 5px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  
+  button{
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+  }
 }
 
 .top-container {
@@ -293,7 +318,7 @@ table {
     padding: 0 15px;
   }
 
-  .side-links{
+  .side-links {
     max-width: initial;
   }
   .side-links a {
@@ -302,5 +327,4 @@ table {
 }
 
 @media screen and (max-widht: 425px) {
- 
 }

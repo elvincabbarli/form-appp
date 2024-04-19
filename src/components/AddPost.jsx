@@ -8,7 +8,7 @@ import { postSuccess } from "../store/postSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const TextEditor = () => {
+const AddPost = () => {
   const [value, setValue] = useState("");
   const [heading, setHeading] = useState("");
   const [categoryId, setCategoryId] = useState("");
@@ -86,4 +86,4 @@ const TextEditor = () => {
   );
 };
 
-export default TextEditor;
+export default AddPost;

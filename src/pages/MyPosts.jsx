@@ -46,7 +46,7 @@ const MyPosts = () => {
       });
 
       // Filter the personalPosts array to remove the deleted post
-      const updatedPosts = personalPosts.filter((post) => post.post_id !== postId);
+      const updatedPosts = personalPosts.filter((post) => post.id !== postId);
 
       // Dispatch an action to update the state with the filtered array
       dispatch(postSuccess(updatedPosts));
@@ -67,7 +67,7 @@ const MyPosts = () => {
               <p>Category: {post.category_name}</p>
 
               <button
-                onClick={() => handleDelete(post.post_id)}
+                onClick={() => handleDelete(post.id)}
                 className="upload-pic"
               >
                 Delete

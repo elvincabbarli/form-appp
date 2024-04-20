@@ -23,7 +23,6 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         {isLoggedIn ? (
-
           <Route path="/profile" element={<Profile />}>
             <Route path="/profile/myinterests" element={<MyInterests />} />
             <Route path="/profile/personal" element={<PersonalInfo />} />
@@ -32,9 +31,6 @@ function App() {
             <Route path="/profile/notifications" element={<Notifications />} />
             <Route path="/profile/followers" element={<Followers />} />
           </Route>
-
-
-
         ) : (
           <Route path="/" element={<Navigate to="/" replace />} />
         )}

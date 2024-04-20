@@ -32,6 +32,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   padding: 15px 0;
+  flex-wrap: wrap;
 
   .header-links a {
     margin: 0 15px;
@@ -222,6 +223,12 @@ table {
 //   flex-wrap: wrap;
 // }
 
+.easy-links{
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
 .singlePost {
   max-width: 250px;
   width: 100%;
@@ -278,19 +285,13 @@ table {
 }
 
 .side-cont {
-  max-width: 900px;
+  // max-width: 900px;
   width: 100%;
 }
 
-.side-links {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  width: 100%;
-  gap: 15px;
-}
 
-.side-links a {
+
+.easy-links a {
   padding: 15px;
   border-radius: 5px;
   border: 1px solid #555;
@@ -298,7 +299,7 @@ table {
   font-weight: bold;
 }
 
-.side-links a.active {
+.easy-links a.active {
   color: red;
   border: 1px solid red;
 }
@@ -308,6 +309,15 @@ table {
   .posts,
   .main-posts {
     flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header-cont{
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .easy-links{
     justify-content: center;
   }
 

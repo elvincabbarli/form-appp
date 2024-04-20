@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../store/postSlice";
 
+
 const Main = () => {
 
   const dispatch = useDispatch();

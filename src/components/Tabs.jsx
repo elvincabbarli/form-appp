@@ -12,38 +12,44 @@ function Tabs() {
     <div className="top-container">
       <div className="side-links">
         <Link
-          to="/profile/personal"
-          className={isActiveLink("/profile/personal")}
+          to="/layout/home"
+          className={isActiveLink("/layout/home")}
+        >
+          Ana Səhifə
+        </Link>
+        <Link
+          to="/layout/personal"
+          className={isActiveLink("/layout/personal")}
         >
           Məlumatlarım
         </Link>
         <Link
-          to="/profile/myinterests"
-          className={isActiveLink("/profile/myinterests")}
+          to="/layout/myinterests"
+          className={isActiveLink("/layout/myinterests")}
         >
           Maraq Sahələri
         </Link>
         <Link
-          to="/profile/notifications"
-          className={isActiveLink("/profile/notifications")}
+          to="/layout/notifications"
+          className={isActiveLink("/layout/notifications")}
         >
           Bildirimlər
         </Link>
         <Link
-          to="/profile/addpost"
-          className={isActiveLink("/profile/addpost")}
+          to="/layout/addpost"
+          className={isActiveLink("/layout/addpost")}
         >
           Post Paylaş
         </Link>
         <Link
-          to="/profile/myposts"
-          className={isActiveLink("/profile/myposts")}
+          to="/layout/myposts"
+          className={isActiveLink("/layout/myposts")}
         >
           Postların
         </Link>
         <Link
-          to="/profile/followers"
-          className={isActiveLink("/profile/followers")}
+          to="/layout/followers"
+          className={isActiveLink("/layout/followers")}
         >
           Takipçilər
         </Link>

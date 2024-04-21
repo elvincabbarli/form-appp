@@ -22,11 +22,15 @@ const Main = () => {
               <h3>{post.heading}</h3>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
               <p>Category: {post.category_name}</p>
-              <Link to={isLoggedIn ? `/post/${post.id}` : "/signin"}>
-                Comment
-              </Link>
-              <button>Like</button>
-              <button>Share</button>
+              <div className="action-btns">
+                <button>
+                  <Link to={isLoggedIn ? `/post/${post.id}` : "/signin"}>
+                    Comment
+                  </Link>
+                </button>
+                <button>Like</button>
+                <button>Share</button>
+              </div>
             </li>
           ))}
         </ul>

@@ -13,6 +13,7 @@ const initialState = {
     isPosted: false,
     loading: false,
     error: null, // Add error state
+    showMobile: false
 };
 
 const myToken = JSON.parse(localStorage.getItem('userInfo'));
@@ -82,6 +83,9 @@ const postSlice = createSlice({
         // },
         postSuccess: (state, action) => {
             state.personalPosts = action.payload
+        },
+        changeMobile: (state) => {
+            state.showMobile ? state.showMobile = false : state.showMobile = true
         }
     },
     extraReducers: (builder) => {

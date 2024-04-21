@@ -84,8 +84,8 @@ const postSlice = createSlice({
         postSuccess: (state, action) => {
             state.personalPosts = action.payload
         },
-        changeMobile: (state) => {
-            state.showMobile ? state.showMobile = false : state.showMobile = true
+        changeMobile: (state , action) => {
+            state.showMobile = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -106,6 +106,6 @@ const postSlice = createSlice({
     },
 });
 
-export const { postSuccess } = postSlice.actions;
+export const { postSuccess , changeMobile } = postSlice.actions;
 
 export default postSlice.reducer;

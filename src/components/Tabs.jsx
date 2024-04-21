@@ -4,6 +4,8 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 function Tabs() {
   const location = useLocation();
   const { isLoggedIn } = useSelector((state) => state.login);
+  const { showMobile } = useSelector((state) => state.post);
+
 
 
   // Function to determine if a link is active
@@ -14,7 +16,7 @@ function Tabs() {
 
   return (
     <div className="top-container">
-      <div className="side-links">
+      <div className={showMobile ? "side-links side-active" : "side-links"}>
         <Link to="/" className={isActiveLink("/")}>
           Ana Səhifə
         </Link>
@@ -23,7 +25,7 @@ function Tabs() {
           Populyar
         </Link>
         {
-          isLoggedIn && 
+          isLoggedIn &&
           <>
             <Link to="/layout/personal" className={isActiveLink("/layout/personal")}>
               Məlumatlarım

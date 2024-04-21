@@ -78,7 +78,7 @@ ul {
   margin-top: 15px;
 }
 
-.action-btns button{
+.action-btns button {
   border: none;
   padding: 5px 10px;
   border-radius: 8px 4px;
@@ -385,8 +385,20 @@ table {
   .side-links {
     max-width: initial;
     position: absolute;
-    left: -200%;
+    transform: translateX(-200%);
+    background-color: #fff;
+    z-index: 5;
+    height: 100%;
+    padding: 0 15px;
+    overflow-x: scroll;
+    transition: all .5s linear;
   }
+
+  .side-links.side-active {
+    left: 0;
+    transform: translateY(0);
+  }
+
   .side-links a {
     padding: 5px 15px !important;
   }

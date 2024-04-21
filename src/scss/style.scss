@@ -26,6 +26,10 @@ ul {
   position: relative;
 }
 
+.mobile-part {
+  display: none;
+}
+
 .logo {
   width: 200px;
   // height: 100px;
@@ -339,6 +343,9 @@ table {
 }
 
 @media screen and (max-width: 768px) {
+  .mobile-part {
+    display: block;
+  }
   .welcome,
   .posts,
   .main-posts {
@@ -388,10 +395,12 @@ table {
     transform: translateX(-200%);
     background-color: #fff;
     z-index: 5;
-    height: 100%;
+    height: 90vh;
     padding: 0 15px;
     overflow-x: scroll;
-    transition: all .5s linear;
+    transition: all 0.5s linear;
+    overflow-y: scroll;
+    padding-bottom: 20px;
   }
 
   .side-links.side-active {

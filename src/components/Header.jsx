@@ -44,7 +44,7 @@ const Header = () => {
           </>
         )}
       </div>
-      <div>
+      <div className="mobile-part">
         <button onClick={handleMobile} className="mobile-btn">
           <img src={mobileMenyu} alt="" />
         </button>

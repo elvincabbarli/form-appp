@@ -69,7 +69,7 @@ export default function SignIn() {
       localStorage.setItem("userInfo", JSON.stringify(response.data));
       dispatch(loginSuccess(response.data));
       if (response.status === 200) {
-        navigate("/profile");
+        navigate("/");
       }
     } catch (error) {
       console.error("Sign-in failed!", error.response.data);

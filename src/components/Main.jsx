@@ -1,13 +1,12 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../store/postSlice";
-
+import { Link } from "react-router-dom";
 
 const Main = () => {
-
   const dispatch = useDispatch();
   const { postsAll } = useSelector((state) => state.post);
+  const { isLoggedIn } = useSelector((state) => state.login);
 
   useEffect(() => {
     dispatch(fetchAllPosts());
@@ -23,6 +22,11 @@ const Main = () => {
               <h3>{post.heading}</h3>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
               <p>Category: {post.category_name}</p>
+              <Link to={isLoggedIn ? `/post/${post.id}` : "/signin"}>
+                Comment
+              </Link>
+              <button>Like</button>
+              <button>Share</button>
             </li>
           ))}
         </ul>
@@ -32,4 +36,3 @@ const Main = () => {
 };
 
 export default Main;
-

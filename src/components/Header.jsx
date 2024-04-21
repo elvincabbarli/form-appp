@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store/loginSlice";
+import logo from '../assets/logo.png'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ const Header = () => {
   return (
     <div className="header-cont">
       <Link className="logo" to="/">
-        Form
+        <img className="logo" src={logo} alt="" />
       </Link>
       <div className="header-links">
 

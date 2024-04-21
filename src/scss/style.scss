@@ -25,6 +25,18 @@ ul {
   padding: 0 16px;
 }
 
+.logo{
+  width: 200px;
+  // height: 100px;
+  object-fit: contain;
+}
+
+.mobile-nav{
+  display: none;
+}
+
+  
+
 .header-cont {
   display: flex;
   align-items: center;
@@ -278,7 +290,22 @@ table {
 .side-cont {
   max-width: 1100px;
   width: 100%;
+  max-height: 88vh;
+  overflow-y: scroll
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.side-cont::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.side-cont {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+
 
 .side-links {
   display: flex;

@@ -13,7 +13,7 @@ const Main = () => {
   }, [dispatch]);
 
   return (
-    <div className="main-cont">
+    <div>
       <h2>All Posts</h2>
       <div>
         <ul className="main-posts">

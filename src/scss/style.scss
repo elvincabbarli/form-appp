@@ -353,6 +353,23 @@ table {
     justify-content: center;
   }
 
+  .whole-cont {
+    padding: 0;
+  }
+
+  .header-cont {
+    padding: 15px;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  .main-cont {
+    padding: 0 15px;
+  }
   .top-container {
     flex-wrap: wrap;
   }
@@ -367,7 +384,6 @@ table {
   }
 
   .post-heading {
-    justify-content: center;
     gap: 15px;
   }
 

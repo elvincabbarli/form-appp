@@ -4,20 +4,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPersonalInterests } from "../store/interestSlice";
+import { fetchAllInterests, fetchPersonalInterests } from "../store/interestSlice";
 import { GetAxios } from "../utils/getAxios";
 
 function InterestsField() {
-  const { token } = useSelector((state) => state.login);
-  const [data, setData] = useState(null);
+  const { token } = useSelector((state) => state.login)
+  const { interestAll } = useSelector((state) => state.interests)
   const [error, setError] = useState(null);
   const dispatch = useDispatch()
+  
   useEffect(() => {
 
     const fetchData = async () => {
       try {
         const response = await GetAxios('https://fast-quora.onrender.com/category', token)
-        setData(response.data);
+        dispatch(fetchAllInterests(response.data))
       } catch (error) {
         setError(error);
       }
@@ -25,6 +26,8 @@ function InterestsField() {
 
     fetchData();
   }, []);
+
+  console.log(interestAll)
 
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
@@ -68,7 +71,7 @@ function InterestsField() {
     <div className="interests-container">
       <h3 className="interests-heading">Maraqlar</h3>
       <div className="interest-div">
-        {data?.map((item) => (
+        {interestAll?.map((item) => (
           <label htmlFor={item.id} className="interest-label" key={item.id}>
             <input
               type="checkbox"

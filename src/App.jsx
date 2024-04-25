@@ -10,7 +10,6 @@ import MyPosts from "./pages/MyPosts";
 import AddPost from "./components/AddPost";
 import Notifications from "./pages/Notifications";
 import Followers from "./pages/Followers";
-import Layout from "./components/Layout";
 import Post from "./components/Post";
 import Popular from "./pages/Popular";
 
@@ -20,26 +19,25 @@ function App() {
   return (
     <div className="whole-cont">
       <Header />
-      <Routes>
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-
-
-        <Route path="/" element={<Layout />}>
+      <div className="container second">
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Main />} />
           <Route path="/popular" element={<Popular />} />
-          {isLoggedIn && <Route path="/layout/myinterests" element={<MyInterests />} />}
-          {isLoggedIn && <Route path="/layout/personal" element={<PersonalInfo />} />}
-          {isLoggedIn && <Route path="/layout/myposts" element={<MyPosts />} />}
-          {isLoggedIn && <Route path="/layout/addpost" element={<AddPost />} />}
-          {isLoggedIn && <Route path="/layout/notifications" element={<Notifications />} />}
-          {isLoggedIn && <Route path="/layout/followers" element={<Followers />} />}
+          {isLoggedIn && (
+            <Route path="/myinterests" element={<MyInterests />} />
+          )}
+          {isLoggedIn && <Route path="/personal" element={<PersonalInfo />} />}
+          {isLoggedIn && <Route path="/myposts" element={<MyPosts />} />}
+          {isLoggedIn && <Route path="/addpost" element={<AddPost />} />}
+          {isLoggedIn && (
+            <Route path="/notifications" element={<Notifications />} />
+          )}
+          {isLoggedIn && <Route path="/followers" element={<Followers />} />}
           {isLoggedIn && <Route path="/post/:post_id" element={<Post />} />}
-        </Route>
-
-
-
-      </Routes>
+        </Routes>
+      </div>
     </div>
   );
 }

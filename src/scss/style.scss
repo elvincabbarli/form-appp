@@ -21,18 +21,28 @@ ul {
   padding-left: 0 !important;
 }
 
-.whole-cont {
-  padding: 0 16px;
-  position: relative;
+.mobile-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.second {
+  margin-top: 30px;
+}
+
+.mobile-btn img {
+  width: 100%;
 }
 
 .mobile-part {
   display: none;
 }
 
-.logo {
+.logo-sec img {
   width: 200px;
-  // height: 100px;
   object-fit: contain;
 }
 
@@ -42,9 +52,11 @@ ul {
 
 .header-cont {
   display: flex;
-  align-items: center;
+  height: 20vh;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 0 16px;
+  position: relative;
+  max-width: 1500px;
 
   .header-links a {
     margin: 0 15px;
@@ -138,7 +150,7 @@ $fontColor: rgb(250, 250, 250);
     height: $circleSize;
     box-shadow: $shadow;
     border-radius: $radius;
-    z-index: 0;
+    z-index: -1;
   }
 
   .-label {
@@ -299,8 +311,17 @@ table {
 
 .top-container {
   display: flex;
+  width: 300px;
   // flex-wrap: wrap;
   gap: 50px;
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  padding: 80px 50px 0 0;
+  overflow: hidden;
+  background-color: lightcoral;
 }
 
 .side-cont {
@@ -421,7 +442,7 @@ table {
 
   .side-links.side-active {
     left: 0;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .side-links a {

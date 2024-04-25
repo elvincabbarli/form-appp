@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../store/postSlice";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const Main = () => {
   return (
     <div>
       <h2>All Posts</h2>
+      <Search />
       <div>
         <ul className="main-posts">
           {postsAll.map((post, index) => (

@@ -154,10 +154,10 @@ const Navbar = () => {
               {!isLoggedIn && (
                 <>
                   <li>
-                    <Link to="/signin">Daxil Ol</Link>
+                    <Link onClick={() => setShowSec(!showSec)} to="/signin">Daxil Ol</Link>
                   </li>
                   <li>
-                    <Link to="/signup">Qeydiyyat</Link>
+                    <Link onClick={() => setShowSec(!showSec)} to="/signup">Qeydiyyat</Link>
                   </li>
                 </>
               )}

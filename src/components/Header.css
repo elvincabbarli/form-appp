@@ -1,8 +1,8 @@
 .nav-container {
-  background: #fff;
+  background: url(../assets/back.jpg);
   padding: 10px 0;
   position: sticky;
-  top: 0;
+  top: -2px;
 }
 
 .nav-second-container {
@@ -104,9 +104,9 @@
   transition: all 0.3s ease-in-out;
 }
 
-.close-btn img:hover {
+/* .close-btn img:hover {
   transform: rotate(180deg);
-}
+} */
 
 .hidden-sec {
   position: fixed;

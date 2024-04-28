@@ -12,6 +12,7 @@ const initialState = {
     personalPosts: [],
     isPosted: false,
     loading: false,
+    singlePost: [],
     error: null, // Add error state
     showMobile: false
 };
@@ -84,8 +85,11 @@ const postSlice = createSlice({
         postSuccess: (state, action) => {
             state.personalPosts = action.payload
         },
-        changeMobile: (state , action) => {
+        changeMobile: (state, action) => {
             state.showMobile = action.payload
+        },
+        singlePostSuccess: (state, action) => {
+            state.singlePost = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -106,6 +110,6 @@ const postSlice = createSlice({
     },
 });
 
-export const { postSuccess , changeMobile } = postSlice.actions;
+export const { postSuccess, changeMobile, singlePostSuccess } = postSlice.actions;
 
 export default postSlice.reducer;

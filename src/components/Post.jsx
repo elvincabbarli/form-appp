@@ -87,7 +87,7 @@ const Post = () => {
     try {
       // Send a request to the server to add a comment
       const response = await axios.post(
-        "https://fast-quora.onrender.com/comment/post",
+        "https://fast-quora.onrender.com/comment",
         {
           post_id: postId,
           content: commentText,

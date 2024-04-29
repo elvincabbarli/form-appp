@@ -77,6 +77,7 @@ const Post = () => {
       const updatedPostData = response.data;
       // Dispatch an action to update the post state with the new data
       dispatch(singlePostSuccess(updatedPostData));
+      window.location.reload()
     } catch (error) {
       console.error("Error adding like:", error);
     }
@@ -103,6 +104,7 @@ const Post = () => {
       dispatch(singlePostSuccess(updatedPostData));
       // Clear the comment text after adding the comment
       setCommentText("");
+      window.location.reload()
     } catch (error) {
       console.error("Error adding comment:", error);
     }
@@ -129,6 +131,7 @@ const Post = () => {
         comment.id === commentId ? updatedCommentData : comment
       );
       setComments(updatedComments);
+      window.location.reload()
     } catch (error) {
       console.error("Error liking comment:", error);
     }

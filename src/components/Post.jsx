@@ -20,8 +20,7 @@ const Post = () => {
     const fetchMyPosts = async () => {
       try {
         const response = await GetAxios(
-          `https://fast-quora.onrender.com/post/${postId}`,
-          token
+          `https://fast-quora.onrender.com/post/${postId}`
         );
         const { data } = response;
         dispatch(singlePostSuccess(data));
@@ -42,11 +41,6 @@ const Post = () => {
       try {
         const response = await axios.get(
           `https://fast-quora.onrender.com/post/${postId}/comment`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
         );
         const commentsData = response.data;
         setComments(commentsData);
@@ -56,7 +50,7 @@ const Post = () => {
     };
 
     fetchComments();
-  }, [postId, token]);
+  }, [postId]);
 
   const addLike = async () => {
     try {

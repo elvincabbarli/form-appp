@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Post = () => {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.login);
+  const { token , isLoggedIn } = useSelector((state) => state.login);
   const { singlePost } = useSelector((state) => state.post);
   const location = useLocation();
   let postId = location.pathname.slice(6);
@@ -148,7 +148,9 @@ const Post = () => {
       <b>Yaradılma Tarixi:</b> <span>{singlePost?.post?.cdate}</span>
       <p>{singlePost?.post?.content}</p>
       <br />
-      <button onClick={addLike}>Like</button> &nbsp;&nbsp;&nbsp;
+      {
+        isLoggedIn ? <button onClick={addLike}>Like</button> &nbsp;&nbsp;&nbsp;  : <Link to='/signin'></Link>
+      }
       <b>Like: </b>
       <span>{singlePost?.post?.likes}</span>
       <br />
@@ -161,7 +163,11 @@ const Post = () => {
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
         ></textarea>
-        <button onClick={addComment}>Add Comment</button>
+        {
+            isLoggedIn ?  <button onClick={addComment}>Add Comment</button> : <Link to='/signin'></Link>
+          
+        }
+       
       </div>
       <br />
       <br />

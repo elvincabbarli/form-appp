@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { GetAxios } from "../utils/getAxios";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { singlePostSuccess } from "../store/postSlice";
 import axios from "axios";
 

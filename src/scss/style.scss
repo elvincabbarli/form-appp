@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   background: url(../assets/back.jpg);
   background-position: center;
   background-size: cover;
@@ -33,9 +33,13 @@ ul {
   right: 0;
   width: 40px;
   height: 40px;
+
+  img {
+    width: 100%;
+  }
 }
 
-.post-comment textarea{
+.post-comment textarea {
   width: 100%;
   min-height: 100px;
   padding: 10px;
@@ -51,10 +55,6 @@ ul {
   justify-content: center;
   align-items: center;
   gap: 25px;
-}
-
-.mobile-btn img {
-  width: 100%;
 }
 
 .mobile-part {
@@ -112,13 +112,13 @@ ul {
   display: flex;
   gap: 15px;
   margin-top: 15px;
-}
 
-.action-btns button {
-  border: none;
-  padding: 5px 10px;
-  border-radius: 8px 4px;
-  color: #000;
+  button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px 4px;
+    color: #000;
+  }
 }
 
 .welcome {
@@ -280,11 +280,6 @@ table {
   flex-wrap: wrap;
 }
 
-// .main-posts{
-//   display: flex;
-//   flex-wrap: wrap;
-// }
-
 .singlePost {
   max-width: 250px;
   width: 100%;
@@ -337,7 +332,6 @@ table {
 .top-container {
   display: flex;
   width: 300px;
-  // flex-wrap: wrap;
   gap: 50px;
   position: relative;
   top: 0;
@@ -350,7 +344,6 @@ table {
 }
 
 .side-cont {
-  // max-width: 1000px;
   width: 100%;
   max-height: 88vh;
   overflow-y: scroll;
@@ -373,19 +366,19 @@ table {
   max-width: 300px;
   width: 100%;
   gap: 15px;
-}
 
-.side-links a {
-  padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #555;
-  color: #000;
-  font-weight: bold;
-}
+  a {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    color: #000;
+    font-weight: bold;
 
-.side-links a.active {
-  color: red;
-  border: 1px solid red;
+    &.active {
+      color: red;
+      border: 1px solid red;
+    }
+  }
 }
 
 .form-container {
@@ -395,21 +388,33 @@ table {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-.form-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container input[type="password"] {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+.form-container {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
 }
 
 .form-container input[type="checkbox"] {
@@ -429,17 +434,6 @@ table {
 
 .form-container button[type="submit"]:hover {
   background-color: #0056b3;
-}
-
-.form-container a {
-  display: block;
-  margin-top: 10px;
-  text-decoration: none;
-  color: #007bff;
-}
-
-.form-container a:hover {
-  text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {
@@ -527,7 +521,4 @@ table {
   .side-links a {
     padding: 5px 15px !important;
   }
-}
-
-@media screen and (max-widht: 425px) {
 }

@@ -20,8 +20,8 @@ const Main = () => {
       <div>
         <ul className="main-posts">
           {postsAll.map((post, index) => (
-       <Link to=`/post/${post.id}` >
-                     <li className="main-page-posts" key={index}>
+           <Link to=`/post/${post.id}` >
+              <li className="main-page-posts" key={index}>
               <h3>{post.heading}</h3>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
               <p>Category: {post.category_name}</p>
@@ -34,9 +34,8 @@ const Main = () => {
                 <button>Like</button>
                 <button>Share</button>
               </div>
-            </li>
-          </Link>
-           
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Post = () => {
   const dispatch = useDispatch();
-  const { token , isLoggedIn } = useSelector((state) => state.login);
+  const { token, isLoggedIn } = useSelector((state) => state.login);
   const { singlePost } = useSelector((state) => state.post);
   const location = useLocation();
   let postId = location.pathname.slice(6);
@@ -77,7 +77,7 @@ const Post = () => {
       const updatedPostData = response.data;
       // Dispatch an action to update the post state with the new data
       dispatch(singlePostSuccess(updatedPostData));
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       console.error("Error adding like:", error);
     }
@@ -104,7 +104,7 @@ const Post = () => {
       dispatch(singlePostSuccess(updatedPostData));
       // Clear the comment text after adding the comment
       setCommentText("");
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       console.error("Error adding comment:", error);
     }
@@ -131,7 +131,7 @@ const Post = () => {
         comment.id === commentId ? updatedCommentData : comment
       );
       setComments(updatedComments);
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       console.error("Error liking comment:", error);
     }
@@ -148,9 +148,11 @@ const Post = () => {
       <b>Yaradılma Tarixi:</b> <span>{singlePost?.post?.cdate}</span>
       <p>{singlePost?.post?.content}</p>
       <br />
-      {
-        isLoggedIn ? <button onClick={addLike}>Like</button> &nbsp;&nbsp;&nbsp;  : <Link to='/signin'></Link>
-      }
+      {isLoggedIn ? (
+        <button onClick={addLike}>Like</button>
+      ) : (
+        <Link to="/signin"></Link>
+      )}&nbsp;&nbsp;&nbsp;
       <b>Like: </b>
       <span>{singlePost?.post?.likes}</span>
       <br />
@@ -163,11 +165,11 @@ const Post = () => {
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
         ></textarea>
-        {
-            isLoggedIn ?  <button onClick={addComment}>Add Comment</button> : <Link to='/signin'></Link>
-          
-        }
-       
+        {isLoggedIn ? (
+          <button onClick={addComment}>Add Comment</button>
+        ) : (
+          <Link to="/signin"></Link>
+        )}
       </div>
       <br />
       <br />

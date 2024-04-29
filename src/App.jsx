@@ -35,7 +35,7 @@ function App() {
             <Route path="/notifications" element={<Notifications />} />
           )}
           {isLoggedIn && <Route path="/followers" element={<Followers />} />}
-           <Route path="/post/:post_id" element={<Post />} 
+           <Route path="/post/:post_id" element={<Post />}  />
         </Routes>
       </div>
     </div>

@@ -47,9 +47,7 @@ const Post = () => {
             },
           }
         );
-        // Assuming the server responds with comments data
         const commentsData = response.data;
-        // Set the comments state with the retrieved comments
         setComments(commentsData);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -61,7 +59,6 @@ const Post = () => {
 
   const addLike = async () => {
     try {
-      // Send a request to the server to increment the like count
       const response = await axios.post(
         "https://fast-quora.onrender.com/like/post",
         {
@@ -73,9 +70,7 @@ const Post = () => {
           },
         }
       );
-      // Assuming the server responds with updated post data including likes count
       const updatedPostData = response.data;
-      // Dispatch an action to update the post state with the new data
       dispatch(singlePostSuccess(updatedPostData));
       window.location.reload();
     } catch (error) {
@@ -98,11 +93,8 @@ const Post = () => {
           },
         }
       );
-      // Assuming the server responds with updated post data including comments
       const updatedPostData = response.data;
-      // Dispatch an action to update the post state with the new data
       dispatch(singlePostSuccess(updatedPostData));
-      // Clear the comment text after adding the comment
       setCommentText("");
       window.location.reload();
     } catch (error) {
@@ -124,9 +116,7 @@ const Post = () => {
           },
         }
       );
-      // Assuming the server responds with updated comment data including likes count
       const updatedCommentData = response.data;
-      // Update the comments state with the updated comment data
       const updatedComments = comments.map((comment) =>
         comment.id === commentId ? updatedCommentData : comment
       );

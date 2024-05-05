@@ -7,13 +7,28 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+// Function to load liked comments from localStorage
+const loadLikedComments = () => {
+    const likedComments = localStorage.getItem("likedComments");
+    return likedComments ? JSON.parse(likedComments) : [];
+};
+
+// Function to load liked post from localStorage
+const loadLikedPost = () => {
+    const likedPost = localStorage.getItem("likedPost");
+    return likedPost ? likedPost : null;
+};
+
 const initialState = {
     postsAll: [],
     personalPosts: [],
     isPosted: false,
     loading: false,
     singlePost: [],
-    error: null, // Add error state
+    likedComments: loadLikedComments(), 
+    likedPost: loadLikedPost(), 
+    error: null, 
     showMobile: false
 };
 
@@ -29,59 +44,16 @@ export const fetchAllPosts = createAsyncThunk(
 
         } catch (error) {
             console.log(error);
-            throw new Error(error.message); // Throw error properly
+            throw new Error(error.message); 
         }
     }
 );
 
 
-// export const fetchPersonalPosts = createAsyncThunk(
-//     "/fetchPersonalPosts",
-//     async () => {
-//         try {
-//             const response = await axios.get("https://fast-quora.onrender.com/post", {
-//                 headers: {
-//                     Authorization: `Bearer ${myToken.token}`,
-//                     "Content-Type": "application/json",
-//                 },
-//             });
-//             const { data } = response;
-//             return data;
-
-//         } catch (error) {
-//             console.log(error);
-//             throw new Error(error.message); // Throw error properly
-//         }
-//     }
-// );
-
-// export const deletePost = createAsyncThunk(
-//     'posts/deletePost',
-//     async (postId, { rejectWithValue }) => {
-//         try {
-//             await axios.delete('https://fast-quora.onrender.com/post', {
-//                 data: { post_id: postId },
-//                 headers: {
-//                     Authorization: `Bearer ${myToken.token}`,
-//                     "Content-Type": "application/json",
-//                 }
-//             });
-//             return postId;
-//         } catch (error) {
-//             return rejectWithValue(error.response.data); // Handle error properly
-//         }
-//     }
-// );
-
 const postSlice = createSlice({
     name: "post",
     initialState,
     reducers: {
-        // deletePost: (state, action) => {
-        //     state.personalPosts = state.personalPosts.filter(
-        //         (post) => post.id !== action.payload
-        //     );
-        // },
         postSuccess: (state, action) => {
             state.personalPosts = action.payload
         },
@@ -90,7 +62,21 @@ const postSlice = createSlice({
         },
         singlePostSuccess: (state, action) => {
             state.singlePost = action.payload
-        }
+        },
+        addLikedComment: (state, action) => {
+            const likedId = action.payload;
+            if (!state.likedComments.includes(likedId)) {
+                state.likedComments.push(likedId);
+                // Update localStorage with the new liked comment
+                localStorage.setItem("likedComments", JSON.stringify(state.likedComments));
+            }
+        },
+        addLikedPost: (state, action) => {
+            const postId = action.payload;
+            state.likedPost = postId;
+            // Update localStorage with the liked post ID
+            localStorage.setItem("likedPost", postId);
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAllPosts.fulfilled, (state, action) => {
@@ -110,6 +96,6 @@ const postSlice = createSlice({
     },
 });
 
-export const { postSuccess, changeMobile, singlePostSuccess } = postSlice.actions;
+export const { postSuccess, changeMobile, singlePostSuccess, addLikedComment, addLikedPost } = postSlice.actions;
 
 export default postSlice.reducer;

@@ -7,7 +7,7 @@ import Search from "./Search";
 const Main = () => {
   const dispatch = useDispatch();
   const { postsAll } = useSelector((state) => state.post);
-  const { isLoggedIn } = useSelector((state) => state.login);
+
 
   useEffect(() => {
     dispatch(fetchAllPosts());
@@ -20,8 +20,8 @@ const Main = () => {
       <div>
         <ul className="main-posts">
           {postsAll.map((post, index) => (
-            <Link to={`/post/${post.id}`}>
-              <li className="main-page-posts" key={index}>
+            <Link className="main-page-posts" key={post.id} to={`/post/${post.id}`}>
+              <li key={index}>
                 <h3>{post.heading}</h3>
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
                 <p>Category: {post.category_name}</p>

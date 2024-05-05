@@ -13,7 +13,7 @@ const MyPosts = () => {
   useEffect(() => {
     const fetchMyPosts = async () => {
       try {
-        const response = await GetAxios('https://fast-quora.onrender.com/post', token)
+        const response = await GetAxios('https://fast-quora.onrender.com/user-post', token)
         const { data } = response;
         dispatch(postSuccess(data))
         return data;

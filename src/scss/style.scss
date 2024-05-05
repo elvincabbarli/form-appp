@@ -14,6 +14,10 @@ a {
   text-decoration: none !important;
 }
 
+.main-posts a {
+  color: #000 !important;
+}
+
 p {
   margin-bottom: 0 !important;
 }
@@ -264,9 +268,8 @@ table {
   gap: 20px;
 }
 
-.quill {
-  z-index: -4 !important;
-  position: relative;
+.ql-container{
+  position: static !important;
 }
 
 .ql-editor {

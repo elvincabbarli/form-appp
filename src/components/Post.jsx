@@ -122,7 +122,7 @@ const Post = () => {
       <p>{singlePost?.post?.content}</p>
       <br />
       {isLoggedIn && !postLiked ? (
-        <button onClick={handleAddLike}>Like</button>
+        <button className="upload-pic" onClick={handleAddLike}>Like</button>
       ) : null}
       &nbsp;&nbsp;&nbsp;
       <b>Like: </b>
@@ -139,7 +139,7 @@ const Post = () => {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
             ></textarea>
-            <button onClick={handleAddComment}>Add Comment</button>
+            <button className="upload-pic" onClick={handleAddComment}>Add Comment</button>
           </>
         ) : (
           <Link to="/signin">
@@ -157,8 +157,8 @@ const Post = () => {
               <li>{comment.content}</li>
               <li>Like: {comment.likes}</li>
               {isLoggedIn && !likedComments.includes(comment.id) ? (
-                <button onClick={() => handleLikeComment(comment.id)}>
-                  Like Comment
+                <button className="upload-pic" onClick={() => handleLikeComment(comment.id)}>
+                  Like
                 </button>
               ) : null}
             </div>

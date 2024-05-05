@@ -52,7 +52,7 @@ const Navbar = () => {
 
           <div className="hidden-inner">
             <div className="nav-first-sec"></div>
-            <hr />
+            {/* <hr /> */}
             <div className="nav-second-sec">
               <li>
                 <Link

@@ -270,7 +270,7 @@ table {
   gap: 20px;
 }
 
-.ql-container{
+.ql-container {
   position: static !important;
 }
 
@@ -441,13 +441,12 @@ table {
   background-color: #0056b3;
 }
 
-.search-form{
+.search-form {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 15px;
 }
-
 
 .search-input {
   width: 100%;
@@ -476,7 +475,6 @@ table {
 }
 
 /* Add more styles as needed */
-
 
 @media screen and (max-width: 768px) {
   .mobile-part {

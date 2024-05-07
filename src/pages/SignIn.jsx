@@ -34,7 +34,7 @@ export default function SignIn() {
       localStorage.setItem("userInfo", JSON.stringify(response.data));
       dispatch(loginSuccess(response.data));
       if (response.status === 200) {
-        navigate("/");
+        navigate("/personal");
       }
     } catch (error) {
       console.error("Sign-in failed!", error.response.data);
@@ -62,7 +62,7 @@ export default function SignIn() {
           id="password"
           autoComplete="current-password"
         />
-        <div style={{display: 'flex' , gap: '15px'}}>
+        <div style={{ display: "flex", gap: "15px" }}>
           <label htmlFor="remember">Məni xatırla</label>
           <input
             type="checkbox"

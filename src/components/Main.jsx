@@ -27,7 +27,7 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(fetchAllPosts());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>

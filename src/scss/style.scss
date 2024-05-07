@@ -441,6 +441,43 @@ table {
   background-color: #0056b3;
 }
 
+.search-form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.search-results {
+  margin-top: 20px;
+}
+
+/* Add more styles as needed */
+
+
 @media screen and (max-width: 768px) {
   .mobile-part {
     display: block;

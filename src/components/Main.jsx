@@ -1,32 +1,55 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPosts } from "../store/postSlice";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { GetAxios } from "../utils/getAxios";
 
 const Main = () => {
-  const dispatch = useDispatch();
-  const { postsAll } = useSelector((state) => state.post);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const { token } = useSelector((state) => state.login);
+
+  const { isLoggedIn } = useSelector((state) => state.login);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
-    setSearchResults([])
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get(`https://fast-quora.onrender.com/search?key=${searchTerm}`);
-      setSearchResults(response.data); // Assuming the response is an array of search results
+      setPosts(response.data);
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
   };
 
   useEffect(() => {
-    dispatch(fetchAllPosts());
+    if(isLoggedIn) {
+      (async function getMyInteresPosts() {
+        try{
+          const { data } = await GetAxios("https://fast-quora.onrender.com/post", token);
+          setPosts(data);
+        } catch (error) {
+          console.log(error);
+        }
+      })()
+    }else{
+      (async function getAllPosts(){
+          try {
+            const response = await axios.get("https://fast-quora.onrender.com/posts", {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+            const { data } = response;
+            setPosts(data);
+          } catch (error) {
+            console.log(error);
+          }
+      })();
+    }
   }, []);
 
   return (
@@ -44,7 +67,7 @@ const Main = () => {
           <button type="submit" className="search-button">Axtar</button>
         </form>
         <div className="main-posts">
-          {searchResults.map((result, index) => (
+          {posts.map((result, index) => (
             <Link className="main-page-posts" key={result.id} to={`/post/${result.id}`}>
               <li key={index}>
                 <h3>{result.heading}</h3>
@@ -61,28 +84,6 @@ const Main = () => {
             </Link>
           ))}
         </div>
-      </div>
-      <div>
-        <ul className="main-posts">
-          {
-            searchResults.length > 0 ? null : postsAll.map((post, index) => (
-              <Link className="main-page-posts" key={post.id} to={`/post/${post.id}`}>
-                <li key={index}>
-                  <h3>{post.heading}</h3>
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
-                  <p>Category: {post.category_name}</p>
-                  <div className="action-btns">
-                    <button>
-                      <Link to={`/post/${post.id}`}>Comment</Link>
-                    </button>
-                    <button>Like</button>
-                    <button>Share</button>
-                  </div>
-                </li>
-              </Link>
-            ))
-          }
-        </ul>
       </div>
     </div>
   );

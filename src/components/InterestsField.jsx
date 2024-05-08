@@ -9,36 +9,43 @@ import { GetAxios } from "../utils/getAxios";
 
 function InterestsField() {
   const { token } = useSelector((state) => state.login)
-  const { interestAll } = useSelector((state) => state.interests)
+  const { interestAll,personalInterest } = useSelector((state) => state.interests)
   const [error, setError] = useState(null);
   const dispatch = useDispatch()
+  const [isChecked,setIsChecked] = useState(false);
+  const [deletedId,setDeletedId] = useState(null);
   
   useEffect(() => {
-
-    const fetchData = async () => {
+    (async function fetchCategoryData() {
       try {
         const response = await GetAxios('https://fast-quora.onrender.com/category', token)
         dispatch(fetchAllInterests(response.data))
       } catch (error) {
         setError(error);
       }
-    };
+    })();
 
-    fetchData();
+    (async function fetchPersonalInteredtData() {
+      try {
+          const response = await GetAxios("https://fast-quora.onrender.com/users/me", token);
+          dispatch(fetchPersonalInterests(response.data.interests))
+      } catch (error) {
+          console.error("Error fetching data:", error);
+      }
+    })();
+
   }, []);
 
-  console.log(interestAll)
-
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
-
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = async (item, event) => {
     const value = parseInt(event.target.value);
+    setIsChecked(event.target.checked);
     if (event.target.checked) {
-      setSelectedCheckboxes((prevState) => [...prevState, value]);
+      const updatedInterest = [...personalInterest, item];
+      dispatch(fetchPersonalInterests(updatedInterest));
     } else {
-      setSelectedCheckboxes((prevState) =>
-        prevState.filter((item) => item !== value)
-      );
+      setDeletedId(value);
+      const updatedInterest = personalInterest.filter((post) => post.id !== value);
+      dispatch(fetchPersonalInterests(updatedInterest));
     }
   };
 
@@ -46,22 +53,31 @@ function InterestsField() {
     event.preventDefault();
 
     try {
+      const personalInterestId = personalInterest.map((item) => item.id);
+
       const postData = {
-        categories: selectedCheckboxes,
+        categories: personalInterestId,
       };
 
-      const response = await axios.post(
-        "https://fast-quora.onrender.com/category",
-        postData,
-        {
+      if(isChecked){
+        await axios.post(
+          "https://fast-quora.onrender.com/category",
+          postData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }else{
+        await axios.delete('https://fast-quora.onrender.com/category', {
+          data: { category_id: deletedId },
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-
-      // console.log("Response:", response.data);
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+          }
+        });
+      }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -78,8 +94,8 @@ function InterestsField() {
               id={item.id}
               name="interest"
               value={item.id}
-              onChange={handleCheckboxChange}
-              checked={selectedCheckboxes.includes(item.id)}
+              onChange={handleCheckboxChange.bind(null,item)}
+              checked={personalInterest.find(arg => arg.id === item.id)}
               className="interest-checkbox"
             />
             {item.name}

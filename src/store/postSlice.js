@@ -33,17 +33,21 @@ const initialState = {
 };
 
 const myToken = JSON.parse(localStorage.getItem('userInfo'));
-console.log(myToken)
 
 export const fetchAllPosts = createAsyncThunk(
     "/fetchAllPosts",
     async () => {
         try {
-            const response = await axios.get("https://fast-quora.onrender.com/post", { headers: { Authorization: `Bearer ${myToken.token}` } });
+            const response = await axios.get("https://fast-quora.onrender.com/post", { 
+                headers: { 
+                    Authorization: `Bearer ${myToken.token}`, 
+                } 
+            });
             const { data } = response;
             return data;
 
         } catch (error) {
+            console.log(error);
             throw new Error(error.message);
         }
     }

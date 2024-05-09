@@ -16,7 +16,6 @@ const Post = () => {
   const postId = location.pathname.slice(6);
   const [loading, setLoading] = useState(true);
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState([]);
   const [postLiked, setPostLiked] = useState(false);
 
   // Function to load liked post from localStorage
@@ -32,7 +31,7 @@ const Post = () => {
   const fetchPostData = async () => {
     try {
       const response = await axios.get(
-        `https://fast-quora.onrender.com/post/${postId}`
+        `http://195.35.56.202:8080/post/${postId}`
       );
       const postData = response.data;
       dispatch(singlePostSuccess(postData));
@@ -43,38 +42,20 @@ const Post = () => {
     }
   };
 
-  const fetchComments = async () => {
-    try {
-      const response = await axios.get(
-        `https://fast-quora.onrender.com/post/${postId}/comment`
-      );
-      const commentsData = response.data;
-      setComments(commentsData);
-    } catch (error) {
-      console.error("Error fetching comments:", error);
-    }
-  };
-
   useEffect(() => {
     fetchPostData();
   }, [postId, dispatch]);
 
-  useEffect(() => {
-    fetchComments();
-  }, [postId]);
-
   const handleAddLike = async () => {
     try {
       await axios.post(
-        "https://fast-quora.onrender.com/like/post",
+        "http://195.35.56.202:8080/like/post",
         { post_id: postId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       await fetchPostData();
       setPostLiked(true);
-      // Update localStorage with the liked post ID
       localStorage.setItem("likedPost", postId);
-      // Dispatch action to add liked post to Redux state
       dispatch(addLikedPost(postId));
     } catch (error) {
       console.error("Error adding like:", error);
@@ -84,11 +65,11 @@ const Post = () => {
   const handleAddComment = async () => {
     try {
       await axios.post(
-        "https://fast-quora.onrender.com/comment",
+        "http://195.35.56.202:8080/comment",
         { post_id: postId, content: commentText },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      await fetchComments();
+      await fetchPostData();
       setCommentText("");
     } catch (error) {
       console.error("Error adding comment:", error);
@@ -98,12 +79,11 @@ const Post = () => {
   const handleLikeComment = async (commentId) => {
     try {
       await axios.post(
-        "https://fast-quora.onrender.com/like/comment",
+        "http://195.35.56.202:8080/like/comment",
         { comment_id: commentId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      await fetchComments();
-      // Dispatch action to add liked comment to Redux state
+      await fetchPostData();
       dispatch(addLikedComment(commentId));
     } catch (error) {
       console.error("Error liking comment:", error);
@@ -122,7 +102,9 @@ const Post = () => {
       <p>{singlePost?.post?.content}</p>
       <br />
       {isLoggedIn && !postLiked ? (
-        <button className="upload-pic" onClick={handleAddLike}>Like</button>
+        <button className="upload-pic" onClick={handleAddLike}>
+          Like
+        </button>
       ) : null}
       &nbsp;&nbsp;&nbsp;
       <b>Like: </b>
@@ -139,7 +121,9 @@ const Post = () => {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
             ></textarea>
-            <button className="upload-pic" onClick={handleAddComment}>Add Comment</button>
+            <button className="upload-pic" onClick={handleAddComment}>
+              Add Comment
+            </button>
           </>
         ) : (
           <Link to="/signin">
@@ -152,12 +136,15 @@ const Post = () => {
       <div>
         <h2>Comments</h2>
         <ul>
-          {comments.map((comment) => (
+          {singlePost?.comments?.map((comment) => (
             <div className="main-page-posts" key={comment.id}>
               <li>{comment.content}</li>
               <li>Like: {comment.likes}</li>
               {isLoggedIn && !likedComments.includes(comment.id) ? (
-                <button className="upload-pic" onClick={() => handleLikeComment(comment.id)}>
+                <button
+                  className="upload-pic"
+                  onClick={() => handleLikeComment(comment.id)}
+                >
                   Like
                 </button>
               ) : null}

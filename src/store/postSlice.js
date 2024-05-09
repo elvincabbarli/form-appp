@@ -38,7 +38,7 @@ export const fetchAllPosts = createAsyncThunk(
     "/fetchAllPosts",
     async () => {
         try {
-            const response = await axios.get("https://fast-quora.onrender.com/post", { 
+            const response = await axios.get("http://195.35.56.202:8080/post", { 
                 headers: { 
                     Authorization: `Bearer ${myToken.token}`, 
                 } 

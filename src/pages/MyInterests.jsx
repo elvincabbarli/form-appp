@@ -14,7 +14,7 @@ const MyInterests = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await GetAxios("https://fast-quora.onrender.com/users/me", token);
+                const response = await GetAxios("http://195.35.56.202:8080/users/me", token);
                 dispatch(fetchPersonalInterests(response.data.interests))
                 console.log("🚀 ~ fetchData ~ response.data.interests:", response.data.interests)
             } catch (error) {
@@ -26,7 +26,7 @@ const MyInterests = () => {
 
     const deleteInterest = async (interestId) => {
         try {
-            await axios.delete('https://fast-quora.onrender.com/category', {
+            await axios.delete('http://195.35.56.202:8080/category', {
                 data: { category_id: interestId },
                 headers: {
                     Authorization: `Bearer ${token}`,

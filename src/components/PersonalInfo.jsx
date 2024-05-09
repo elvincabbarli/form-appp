@@ -1,12 +1,29 @@
-import { useSelector } from "react-redux";
-import profPic from "../assets/prof.jpg";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import InterestsField from "./InterestsField";
+import { GetAxios } from "../utils/getAxios";
+import { fetchPersonalInterests } from "../store/interestSlice";
 
 const PersonalInfo = () => {
   const { username, name, lastName, email } = useSelector(
     (state) => state.login,
   );
+  const dispatch = useDispatch()
+  const [userData, setUserdata] = useState([])
+  const { token } = useSelector((state) => state.login)
+  useEffect(() => {
+    (async function fetchPersonalInteredtData() {
+      try {
+        const response = await GetAxios("http://195.35.56.202:8080/users/me", token);
+        setUserdata(response.data)
+        dispatch(fetchPersonalInterests(response.data.interests))
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    })();
+
+  }, []);
+
 
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -53,7 +70,7 @@ const PersonalInfo = () => {
                 alt="Selected"
               />
             ) : (
-              <img src={profPic} width="200" alt="Default" />
+              <img src={userData?.user?.picture} width="200" alt="Default" />
             )}
           </div>
           {selectedFile ? (

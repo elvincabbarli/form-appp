@@ -31,7 +31,7 @@ const AddPost = () => {
   const sendToServer = () => {
     axios
       .post(
-        "https://fast-quora.onrender.com/post",
+        "http://195.35.56.202:8080/post",
         {
           heading: postData.heading,
           content: postData.content,
@@ -62,7 +62,7 @@ const AddPost = () => {
     const fetchData = async () => {
       try {
         const response = await GetAxios(
-          "https://fast-quora.onrender.com/category",
+          "http://195.35.56.202:8080/category",
           token
         );
         dispatch(fetchAllInterests(response.data));

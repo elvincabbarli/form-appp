@@ -20,7 +20,7 @@ export default function SignUp() {
 
     try {
       const response = await axios.post(
-        "https://fast-quora.onrender.com/register",
+        "http://195.35.56.202:8080/register",
         formData,
         {
           mode: "no-cors",

@@ -81,7 +81,7 @@ const Navbar = () => {
                       to="/personal"
                       className={isActiveLink("/personal")}
                     >
-                      Məlumatlarım
+                      Profil
                     </Link>
                   </li>
                   <li>
@@ -127,15 +127,6 @@ const Navbar = () => {
                       className={isActiveLink("/followers")}
                     >
                       Takipçilər
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      onClick={() => setShowSec(!showSec)}
-                      className="mobile-nav"
-                    >
-                      Profil
                     </Link>
                   </li>
                   <li>

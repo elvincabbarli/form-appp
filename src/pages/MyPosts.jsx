@@ -13,7 +13,7 @@ const MyPosts = () => {
   useEffect(() => {
     const fetchMyPosts = async () => {
       try {
-        const response = await GetAxios('https://fast-quora.onrender.com/user-post', token)
+        const response = await GetAxios('http://195.35.56.202:8080/user-post', token)
         const { data } = response;
         dispatch(postSuccess(data))
         return data;
@@ -37,7 +37,7 @@ const MyPosts = () => {
 
   const handleDelete = async (postId) => {
     try {
-      await axios.delete('https://fast-quora.onrender.com/post', {
+      await axios.delete('http://195.35.56.202:8080/post', {
         data: { post_id: postId },
         headers: {
           Authorization: `Bearer ${token}`,

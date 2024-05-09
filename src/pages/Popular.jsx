@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { getTimeElapsed } from "../utils/time";
 
 const Popular = () => {
   const [allPosts,setAllPosts] = useState([]);
@@ -8,7 +9,7 @@ const Popular = () => {
   useEffect(() => {
     (async function getAllPosts(){
       try {
-        const response = await axios.get("https://fast-quora.onrender.com/posts", {
+        const response = await axios.get("http://195.35.56.202:8080/posts", {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -30,15 +31,18 @@ const Popular = () => {
             allPosts.map((post, index) => (
               <Link className="main-page-posts" key={post.id} to={`/post/${post.id}`}>
                 <li key={index}>
+                  <span>Owner: <b>{post.username}</b></span>
                   <h3>{post.heading}</h3>
                   <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                  <p>Tarix: {getTimeElapsed(post.cdate)}</p>{" "}
                   <p>Category: {post.category_name}</p>
+                  <p>Like: {post.likes}</p>
                   <div className="action-btns">
                     <button>
-                      <Link to={`/post/${post.id}`}>Comment</Link>
+                      <Link to={`/post/${post.id}`}>Yorum</Link>
                     </button>
-                    <button>Like</button>
-                    <button>Share</button>
+                    <button>Bəyən</button>
+                    <button>Paylaş</button>
                   </div>
                 </li>
               </Link>

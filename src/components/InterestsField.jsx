@@ -9,31 +9,21 @@ import { GetAxios } from "../utils/getAxios";
 
 function InterestsField() {
   const { token } = useSelector((state) => state.login)
-  const { interestAll,personalInterest } = useSelector((state) => state.interests)
+  const { interestAll, personalInterest } = useSelector((state) => state.interests)
   const [error, setError] = useState(null);
   const dispatch = useDispatch()
-  const [isChecked,setIsChecked] = useState(false);
-  const [deletedId,setDeletedId] = useState(null);
-  
+  const [isChecked, setIsChecked] = useState(false);
+  const [deletedId, setDeletedId] = useState(null);
+
   useEffect(() => {
     (async function fetchCategoryData() {
       try {
-        const response = await GetAxios('https://fast-quora.onrender.com/category', token)
+        const response = await GetAxios('http://195.35.56.202:8080/category', token)
         dispatch(fetchAllInterests(response.data))
       } catch (error) {
         setError(error);
       }
     })();
-
-    (async function fetchPersonalInteredtData() {
-      try {
-          const response = await GetAxios("https://fast-quora.onrender.com/users/me", token);
-          dispatch(fetchPersonalInterests(response.data.interests))
-      } catch (error) {
-          console.error("Error fetching data:", error);
-      }
-    })();
-
   }, []);
 
   const handleCheckboxChange = async (item, event) => {
@@ -59,9 +49,9 @@ function InterestsField() {
         categories: personalInterestId,
       };
 
-      if(isChecked){
+      if (isChecked) {
         await axios.post(
-          "https://fast-quora.onrender.com/category",
+          "http://195.35.56.202:8080/category",
           postData,
           {
             headers: {
@@ -69,12 +59,12 @@ function InterestsField() {
             },
           }
         );
-      }else{
-        await axios.delete('https://fast-quora.onrender.com/category', {
+      } else {
+        await axios.delete('http://195.35.56.202:8080/category', {
           data: { category_id: deletedId },
           headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           }
         });
       }
@@ -94,7 +84,7 @@ function InterestsField() {
               id={item.id}
               name="interest"
               value={item.id}
-              onChange={handleCheckboxChange.bind(null,item)}
+              onChange={handleCheckboxChange.bind(null, item)}
               checked={personalInterest.find(arg => arg.id === item.id)}
               className="interest-checkbox"
             />

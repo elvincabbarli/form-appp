@@ -12,11 +12,13 @@ const Post = () => {
   const postId = location.pathname.slice(6);
   const [loading, setLoading] = useState(true);
   const [commentText, setCommentText] = useState("");
+  const [commentError, setCommentError] = useState("");
 
   const fetchPostData = async () => {
     try {
       const response = await axios.get(
-        `http://195.35.56.202:8080/post/${postId}`
+        `http://195.35.56.202:8080/post/${postId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       const postData = response.data;
       dispatch(singlePostSuccess(postData));
@@ -45,6 +47,10 @@ const Post = () => {
   };
 
   const handleAddComment = async () => {
+    if (!commentText) {
+      setCommentError("Zəhmət olmasa koment əlavə edin.."); // Set error message if comment is empty
+      return;
+    }
     try {
       await axios.post(
         "http://195.35.56.202:8080/comment",
@@ -53,6 +59,7 @@ const Post = () => {
       );
       await fetchPostData();
       setCommentText("");
+      setCommentError(""); // Clear error message if comment is successfully added
     } catch (error) {
       console.error("Error adding comment:", error);
     }
@@ -80,11 +87,13 @@ const Post = () => {
       <h1>{singlePost?.post?.heading}</h1>
       <b>Kateqoriya:</b> <span>{singlePost?.post?.category_name}</span> <br />
       <b>Yaradılma Tarixi:</b> <span>{singlePost?.post?.cdate}</span>
-      <p>{singlePost?.post?.content}</p>
+      <div dangerouslySetInnerHTML={{ __html: singlePost?.post?.content }} />
       <br />
-      <button className="upload-pic" onClick={handleAddLike}>
-        Like
-      </button>
+      {singlePost?.post?.is_user_liked === 0 ? (
+        <button className="upload-pic" onClick={handleAddLike}>
+          Like
+        </button>
+      ) : null}
       &nbsp;&nbsp;&nbsp;
       <b>Like: </b>
       <span>{singlePost?.post?.likes}</span>
@@ -98,8 +107,11 @@ const Post = () => {
               name="text"
               id="text"
               value={commentText}
+              required
               onChange={(e) => setCommentText(e.target.value)}
             ></textarea>
+            {commentError && <p style={{ color: "red" }}>{commentError}</p>}{" "}
+            {/* Display error message */}
             <button className="upload-pic" onClick={handleAddComment}>
               Add Comment
             </button>
@@ -117,15 +129,18 @@ const Post = () => {
         <ul>
           {singlePost?.comments?.map((comment) => (
             <div className="main-page-posts" key={comment.id}>
+              <Link>{comment.username}</Link>
               <li>{comment.content}</li>
               <li>Like: {comment.likes}</li>
 
-              <button
-                className="upload-pic"
-                onClick={() => handleLikeComment(comment.id)}
-              >
-                Like
-              </button>
+              {comment?.is_user_liked === 0 ? (
+                <button
+                  className="upload-pic"
+                  onClick={() => handleLikeComment(comment.id)}
+                >
+                  Like
+                </button>
+              ) : null}
             </div>
           ))}
         </ul>

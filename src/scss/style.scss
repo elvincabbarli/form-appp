@@ -10,6 +10,10 @@ body {
   background-size: cover;
 }
 
+hr {
+  margin: 0 !important;
+}
+
 a {
   text-decoration: none !important;
 }
@@ -296,9 +300,9 @@ table {
 
 .main-page-posts {
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid #b1b7d1;
   margin: 15px 0;
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px 5px;
 }
 
@@ -472,6 +476,22 @@ table {
 
 .search-results {
   margin-top: 20px;
+}
+
+.post-head,
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5px;
+  // margin-bottom: 15px;
+}
+
+.post-body {
+  padding: 10px 0 30px 0;
+}
+
+.post-footer img {
+  width: 30px;
 }
 
 /* Add more styles as needed */

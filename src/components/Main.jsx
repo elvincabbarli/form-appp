@@ -10,9 +10,23 @@ const Main = () => {
   const [posts, setPosts] = useState([]);
   const { token } = useSelector((state) => state.login);
   const { isLoggedIn } = useSelector((state) => state.login);
+  const [liked, setLiked] = useState();
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleAddLike = async (id) => {
+    try {
+      await axios.post(
+        "http://195.35.56.202:8080/like/post",
+        { post_id: id },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setLiked(true);
+    } catch (error) {
+      console.error("Error adding like:", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -43,11 +57,14 @@ const Main = () => {
     } else {
       (async function getAllPosts() {
         try {
-          const response = await axios.get("http://195.35.56.202:8080/posts", {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const response = await axios.get(
+            "http://195.35.56.202:8080/popular",
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
           const { data } = response;
           setPosts(data);
         } catch (error) {
@@ -55,13 +72,17 @@ const Main = () => {
         }
       })();
     }
-  }, []);
+  }, [isLoggedIn, token, liked]);
 
   return (
     <div>
-      <h2 style={{marginBottom: '15px'}}>Bütün Postlar</h2>
+      <h2 style={{ marginBottom: "15px" }}>Bütün Postlar</h2>
       <div className="search-container">
-        <form style={{marginBottom: '15px'}} className="search-form" onSubmit={handleSubmit}>
+        <form
+          style={{ marginBottom: "15px" }}
+          className="search-form"
+          onSubmit={handleSubmit}
+        >
           <input
             type="text"
             value={searchTerm}
@@ -75,30 +96,42 @@ const Main = () => {
         </form>
         <div className="main-posts">
           {posts.map((result, index) => (
-            <Link
-              className="main-page-posts"
-              key={result.id}
-              to={`/post/${result.id}`}
-            >
-              <li key={index}>
-                <span>
-                  Owner: <b>{result.username}</b>
-                </span>
-                <h3>{result.heading}</h3>
-                <div dangerouslySetInnerHTML={{ __html: result.content }} />
-                <p>Category: {result.category_name}</p>
-                <p>Tarix: {getTimeElapsed(result.cdate)}</p>{" "}
-                <p>Like: {result.likes}</p>
-                {/* Display time elapsed */}
-                <div className="action-btns">
-                  <button>
-                    <Link to={`/post/${result.id}`}>Yorum</Link>
-                  </button>
-                  <button>Bəyən</button>
-                  <button>Paylaş</button>
+            <li className="main-page-posts" key={index}>
+              <div className="post-head">
+                <Link>
+                  <b>@{result.username}</b>
+                </Link>
+                <p>{getTimeElapsed(result.cdate)}</p>
+              </div>
+              <hr />
+              <Link to={`/post/${result.id}`}>
+                <div className="post-body">
+                  <h3>{result.heading}</h3>
+                  <div dangerouslySetInnerHTML={{ __html: result.content }} />
                 </div>
-              </li>
-            </Link>
+              </Link>
+
+              <hr />
+              <div className="post-footer">
+                <p>{result.likes}👍</p>
+                <i style={{ textTransform: "capitalize" }}>
+                  {result.category_name}
+                </i>
+              </div>
+              <hr />
+              <div className="action-btns">
+                <button>
+                  <Link to={`/post/${result.id}`}>Yorum</Link>
+                </button>
+                {result?.is_user_liked === 0 ? (
+                  <button onClick={() => handleAddLike(result.id)}>
+                    Bəyən
+                  </button>
+                ) : null}
+
+                <button>Paylaş</button>
+              </div>
+            </li>
           ))}
         </div>
       </div>

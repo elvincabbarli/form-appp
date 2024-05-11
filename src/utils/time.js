@@ -9,12 +9,12 @@ export const getTimeElapsed = (publishDate) => {
     if (elapsedMinutes < 1) {
         return "İndicə";
     } else if (elapsedMinutes === 1) {
-        return "1 dəqiqə əvvəl";
+        return "1 dəqiqə 🕢";
     } else if (elapsedMinutes < 60) {
-        return `${elapsedMinutes} dəqiqə əvvəl`;
+        return `${elapsedMinutes} dəqiqə 🕢`;
     } else if (elapsedMinutes < 1440) {
-        return `${Math.floor(elapsedMinutes / 60)} saat əvvəl`;
+        return `${Math.floor(elapsedMinutes / 60)} saat 🕢`;
     } else {
-        return `${Math.floor(elapsedMinutes / 1440)} gün əvvəl`;
+        return `${Math.floor(elapsedMinutes / 1440)} gün 🕢`;
     }
 };

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
     createAsyncThunk,
     createSlice,
@@ -8,17 +7,6 @@ import {
 import axios from "axios";
 
 
-// Function to load liked comments from localStorage
-const loadLikedComments = () => {
-    const likedComments = localStorage.getItem("likedComments");
-    return likedComments ? JSON.parse(likedComments) : [];
-};
-
-// Function to load liked post from localStorage
-const loadLikedPost = () => {
-    const likedPost = localStorage.getItem("likedPost");
-    return likedPost ? likedPost : null;
-};
 
 const initialState = {
     postsAll: [],
@@ -26,8 +14,6 @@ const initialState = {
     isPosted: false,
     loading: false,
     singlePost: [],
-    likedComments: loadLikedComments(),
-    likedPost: loadLikedPost(),
     error: null,
     showMobile: false
 };
@@ -38,10 +24,10 @@ export const fetchAllPosts = createAsyncThunk(
     "/fetchAllPosts",
     async () => {
         try {
-            const response = await axios.get("http://195.35.56.202:8080/post", { 
-                headers: { 
-                    Authorization: `Bearer ${myToken.token}`, 
-                } 
+            const response = await axios.get("http://195.35.56.202:8080/post", {
+                headers: {
+                    Authorization: `Bearer ${myToken.token}`,
+                }
             });
             const { data } = response;
             return data;
@@ -101,6 +87,6 @@ const postSlice = createSlice({
     },
 });
 
-export const { postSuccess, changeMobile, singlePostSuccess, addLikedComment, addLikedPost } = postSlice.actions;
+export const { postSuccess, changeMobile, singlePostSuccess, } = postSlice.actions;
 
 export default postSlice.reducer;

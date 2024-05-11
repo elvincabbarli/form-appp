@@ -1,32 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
-import {
-  singlePostSuccess,
-  addLikedComment,
-  addLikedPost,
-} from "../store/postSlice";
+import { singlePostSuccess } from "../store/postSlice";
 import axios from "axios";
 
 const Post = () => {
   const dispatch = useDispatch();
   const { token, isLoggedIn } = useSelector((state) => state.login);
-  const { singlePost, likedComments } = useSelector((state) => state.post);
+  const { singlePost } = useSelector((state) => state.post);
   const location = useLocation();
   const postId = location.pathname.slice(6);
   const [loading, setLoading] = useState(true);
   const [commentText, setCommentText] = useState("");
-  const [postLiked, setPostLiked] = useState(false);
-
-  // Function to load liked post from localStorage
-  const loadLikedPost = () => {
-    const likedPost = localStorage.getItem("likedPost");
-    return likedPost === postId;
-  };
-
-  useEffect(() => {
-    setPostLiked(loadLikedPost());
-  }, [postId]);
 
   const fetchPostData = async () => {
     try {
@@ -54,9 +39,6 @@ const Post = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       await fetchPostData();
-      setPostLiked(true);
-      localStorage.setItem("likedPost", postId);
-      dispatch(addLikedPost(postId));
     } catch (error) {
       console.error("Error adding like:", error);
     }
@@ -84,7 +66,6 @@ const Post = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       await fetchPostData();
-      dispatch(addLikedComment(commentId));
     } catch (error) {
       console.error("Error liking comment:", error);
     }
@@ -101,11 +82,9 @@ const Post = () => {
       <b>Yaradılma Tarixi:</b> <span>{singlePost?.post?.cdate}</span>
       <p>{singlePost?.post?.content}</p>
       <br />
-      {isLoggedIn && !postLiked ? (
-        <button className="upload-pic" onClick={handleAddLike}>
-          Like
-        </button>
-      ) : null}
+      <button className="upload-pic" onClick={handleAddLike}>
+        Like
+      </button>
       &nbsp;&nbsp;&nbsp;
       <b>Like: </b>
       <span>{singlePost?.post?.likes}</span>
@@ -140,14 +119,13 @@ const Post = () => {
             <div className="main-page-posts" key={comment.id}>
               <li>{comment.content}</li>
               <li>Like: {comment.likes}</li>
-              {isLoggedIn && !likedComments.includes(comment.id) ? (
-                <button
-                  className="upload-pic"
-                  onClick={() => handleLikeComment(comment.id)}
-                >
-                  Like
-                </button>
-              ) : null}
+
+              <button
+                className="upload-pic"
+                onClick={() => handleLikeComment(comment.id)}
+              >
+                Like
+              </button>
             </div>
           ))}
         </ul>

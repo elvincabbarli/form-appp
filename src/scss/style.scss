@@ -47,10 +47,19 @@ ul {
   }
 }
 
+.post-comment {
+  margin-top: 15px;
+}
+
 .post-comment textarea {
   width: 100%;
   min-height: 100px;
   padding: 10px;
+  background: transparent;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #aeabab;
+  border-radius: 10px 5px;
 }
 
 .second {
@@ -494,7 +503,7 @@ table {
   width: 30px;
 }
 
-.like-sec{
+.like-sec {
   display: flex;
   align-items: center;
   gap: 15px;

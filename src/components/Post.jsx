@@ -114,30 +114,32 @@ const Post = () => {
             {singlePost?.post?.category_name}
           </i>
         </div>
+
+        <div className="post-comment">
+          {isLoggedIn ? (
+            <>
+              <label htmlFor="text">Add Comment</label> <br />
+              <textarea
+                name="text"
+                id="text"
+                value={commentText}
+                required
+                onChange={(e) => setCommentText(e.target.value)}
+              ></textarea>
+              {commentError && <p style={{ color: "red" }}>{commentError}</p>}{" "}
+              {/* Display error message */}
+              <button className="upload-pic" onClick={handleAddComment}>
+                Add Comment
+              </button>
+            </>
+          ) : (
+            <Link to="/signin">
+              <button className="upload-pic">Add Comment</button>
+            </Link>
+          )}
+        </div>
       </div>
-      <div className="post-comment">
-        {isLoggedIn ? (
-          <>
-            <label htmlFor="text">Add Comment</label> <br />
-            <textarea
-              name="text"
-              id="text"
-              value={commentText}
-              required
-              onChange={(e) => setCommentText(e.target.value)}
-            ></textarea>
-            {commentError && <p style={{ color: "red" }}>{commentError}</p>}{" "}
-            {/* Display error message */}
-            <button className="upload-pic" onClick={handleAddComment}>
-              Add Comment
-            </button>
-          </>
-        ) : (
-          <Link to="/signin">
-            <button className="upload-pic">Add Comment</button>
-          </Link>
-        )}
-      </div>
+
       <br />
       <br />
       <div>

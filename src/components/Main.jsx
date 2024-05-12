@@ -81,6 +81,8 @@ const Main = () => {
     }
   }, [isLoggedIn, token, liked]);
 
+  console.log(posts)
+
   return (
     <div>
       <h2 style={{ marginBottom: "15px" }}>Bütün Postlar</h2>
@@ -105,7 +107,7 @@ const Main = () => {
           {posts.map((result, index) => (
             <li className="main-page-posts" key={index}>
               <div className="post-head">
-                <Link>
+                <Link to={`/${result.user_id}`}>
                   <b>@{result.username}</b>
                 </Link>
                 <p>{getTimeElapsed(result.cdate)}</p>
@@ -120,7 +122,7 @@ const Main = () => {
 
               <hr />
               <div className="post-footer">
-                <p>{result.likes}&nbsp;<img style={{width: '20px'}} src={like} alt="" /></p>
+                <p>{result.likes}&nbsp;<img style={{ width: '20px' }} src={like} alt="" /></p>
                 <i style={{ textTransform: "capitalize" }}>
                   {result.category_name}
                 </i>

@@ -12,6 +12,7 @@ import Notifications from "./pages/Notifications";
 import Followers from "./pages/Followers";
 import Post from "./components/Post";
 import Popular from "./pages/Popular";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.login);
@@ -36,6 +37,7 @@ function App() {
           )}
           {isLoggedIn && <Route path="/followers" element={<Followers />} />}
            <Route path="/post/:post_id" element={<Post />}  />
+           <Route path="/:user_id" element={<UserProfile />}  />
         </Routes>
       </div>
     </div>

@@ -47,7 +47,7 @@ const Popular = () => {
           {allPosts.map((post, index) => (
             <li className="main-page-posts" key={index}>
               <div className="post-head">
-                <Link>
+                <Link to={`/${post.user_id}`}>
                   <b>@{post.username}</b>
                 </Link>
                 <p>{getTimeElapsed(post.cdate)}</p>

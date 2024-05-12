@@ -509,6 +509,19 @@ table {
   gap: 15px;
 }
 
+.interest-user{
+  display: flex;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.interest-user li{
+  border: 1px solid #aaa4a4;
+  padding: 5px;
+  border-radius: 5px 10px;
+  text-transform: capitalize;
+}
+
 /* Add more styles as needed */
 
 @media screen and (max-width: 768px) {

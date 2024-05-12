@@ -4,7 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import { singlePostSuccess } from "../store/postSlice";
 import axios from "axios";
 import { getTimeElapsed } from "../utils/time";
-import like from "../assets/heart.png"
+import like from "../assets/heart.png";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -86,7 +86,7 @@ const Post = () => {
     <>
       <div className="main-page-posts">
         <div className="post-head">
-          <Link>
+          <Link to={`/${singlePost?.post?.user_id}`}>
             <b>@{singlePost?.post?.username}</b>
           </Link>
           <p>{getTimeElapsed(singlePost?.post?.cdate)}</p>
@@ -106,9 +106,9 @@ const Post = () => {
                 Like
               </button>
             ) : null}
-            <div style={{ display: "flex", alignItems: "center" , gap: '5px' }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
               <b>{singlePost?.post?.likes}</b>
-              <img style={{width: '20px'}} src={like} alt="" />
+              <img style={{ width: "20px" }} src={like} alt="" />
             </div>
           </div>
           <i style={{ textTransform: "capitalize" }}>
@@ -148,7 +148,7 @@ const Post = () => {
         <ul>
           {singlePost?.comments?.map((comment) => (
             <div className="main-page-posts" key={comment.id}>
-              <Link>{comment.username}</Link>
+              <Link to={`/${comment.user_id}`}>{comment.username}</Link>
               <li>{comment.content}</li>
               <li>Like: {comment.likes}</li>
 

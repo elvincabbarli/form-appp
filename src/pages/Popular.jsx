@@ -4,6 +4,7 @@ import axios from "axios";
 import { getTimeElapsed } from "../utils/time";
 import { useSelector } from "react-redux";
 import TruncatedPost from "../components/TruncatedPost";
+import like from "../assets/heart.png"
 
 const Popular = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -60,7 +61,7 @@ const Popular = () => {
               </Link>{" "}
               <hr />
               <div className="post-footer">
-                <p>{post.likes} 👍</p>
+                <p>{post.likes}&nbsp;<img style={{width: '20px'}} src={like} alt="" /></p>
                 <i style={{ textTransform: "capitalize" }}>
                   {post.category_name}
                 </i>

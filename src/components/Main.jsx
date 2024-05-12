@@ -5,6 +5,7 @@ import axios from "axios";
 import { GetAxios } from "../utils/getAxios";
 import { getTimeElapsed } from "../utils/time";
 import TruncatedPost from "./TruncatedPost";
+import like from "../assets/heart.png"
 
 
 const Main = () => {
@@ -119,7 +120,7 @@ const Main = () => {
 
               <hr />
               <div className="post-footer">
-                <p>{result.likes}👍</p>
+                <p>{result.likes}&nbsp;<img style={{width: '20px'}} src={like} alt="" /></p>
                 <i style={{ textTransform: "capitalize" }}>
                   {result.category_name}
                 </i>

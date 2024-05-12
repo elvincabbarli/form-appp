@@ -4,6 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import { singlePostSuccess } from "../store/postSlice";
 import axios from "axios";
 import { getTimeElapsed } from "../utils/time";
+import like from "../assets/heart.png"
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -105,9 +106,9 @@ const Post = () => {
                 Like
               </button>
             ) : null}
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <p>{singlePost?.post?.likes}</p>
-              <span>👍</span>
+            <div style={{ display: "flex", alignItems: "center" , gap: '5px' }}>
+              <b>{singlePost?.post?.likes}</b>
+              <img style={{width: '20px'}} src={like} alt="" />
             </div>
           </div>
           <i style={{ textTransform: "capitalize" }}>

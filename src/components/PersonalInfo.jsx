@@ -36,9 +36,10 @@ const PersonalInfo = () => {
       const formData = new FormData();
       formData.append("image", selectedFile);
 
-      fetch("your-backend-api-url", {
+      fetch("http://195.35.56.202:9090/user/picture", {
         method: "POST",
         body: formData,
+        headers: { Authorization: `Bearer ${token}` }
       })
         .then((response) => response.json())
         .then((data) => {

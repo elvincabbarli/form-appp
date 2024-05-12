@@ -5,8 +5,10 @@ import axios from "axios";
 import { GetAxios } from "../utils/getAxios";
 import { getTimeElapsed } from "../utils/time";
 import TruncatedPost from "./TruncatedPost";
-import like from "../assets/heart.png"
-
+import like from "../assets/heart.png";
+import like2 from "../assets/like2.png";
+import send from "../assets/send.png";
+import comment from "../assets/comment.png";
 
 const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +43,7 @@ const Main = () => {
       if (response.status === 200) {
         setPosts(response.data);
       } else if (response.status === 404) {
-        setPosts([])
+        setPosts([]);
       }
     } catch (error) {
       console.error("Error fetching search results:", error);
@@ -81,7 +83,7 @@ const Main = () => {
     }
   }, [isLoggedIn, token, liked]);
 
-  console.log(posts)
+  console.log(posts);
 
   return (
     <div>
@@ -107,6 +109,7 @@ const Main = () => {
           {posts.map((result, index) => (
             <li className="main-page-posts" key={index}>
               <div className="post-head">
+              <img src={`http://195.35.56.202:9090/user/picture/${result.user_id}`} alt="" />
                 <Link to={`user/${result.user_id}`}>
                   <b>@{result.username}</b>
                 </Link>
@@ -122,23 +125,27 @@ const Main = () => {
 
               <hr />
               <div className="post-footer">
-                <p>{result.likes}&nbsp;<img style={{ width: '20px' }} src={like} alt="" /></p>
+                <p>
+                  {result.likes}&nbsp;
+                  <img style={{ width: "20px" }} src={like} alt="" />
+                </p>
                 <i style={{ textTransform: "capitalize" }}>
                   {result.category_name}
                 </i>
               </div>
               <hr />
               <div className="action-btns">
-                <button>
-                  <Link to={`/post/${result.id}`}>Yorum</Link>
-                </button>
                 {result?.is_user_liked === 0 ? (
-                  <button onClick={() => handleAddLike(result.id)}>
-                    Bəyən
-                  </button>
+                  <Link onClick={() => handleAddLike(result.id)}>
+                    <img  style={{width: '20px'}}  src={like2} alt="" />
+                  </Link>
                 ) : null}
-
-                <button>Paylaş</button>
+                <Link to={`/post/${result.id}`}>
+                  <img src={comment} alt="" />
+                </Link>
+                <Link>
+                  <img style={{width: '20px'}} src={send} alt="" />
+                </Link>
               </div>
             </li>
           ))}

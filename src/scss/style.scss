@@ -127,15 +127,22 @@ ul {
 
 .action-btns {
   display: flex;
-  gap: 15px;
+  gap: 5px;
   margin-top: 15px;
 
-  button {
+  a {
     border: none;
-    padding: 5px 10px;
-    border-radius: 8px 4px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
     color: #000;
-    border: 1px solid black;
+
+    img {
+      width: 100%;
+    }
   }
 }
 
@@ -510,14 +517,14 @@ table {
   gap: 15px;
 }
 
-.interest-user{
+.interest-user {
   display: flex;
   margin-top: 15px;
   gap: 15px;
   flex-wrap: wrap;
 }
 
-.interest-user li{
+.interest-user li {
   border: 1px solid #aaa4a4;
   padding: 5px;
   border-radius: 5px 10px;

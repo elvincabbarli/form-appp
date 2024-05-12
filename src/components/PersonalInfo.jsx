@@ -92,7 +92,6 @@ const PersonalInfo = () => {
           </div>
         </div>
       </div>
-      <hr />
       <div className="personal-infos">
         <table>
           <tbody>

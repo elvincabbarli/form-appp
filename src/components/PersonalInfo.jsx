@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import InterestsField from "./InterestsField";
 import { GetAxios } from "../utils/getAxios";
 import { fetchPersonalInterests } from "../store/interestSlice";
+import axios from "axios";
 
 const PersonalInfo = () => {
   const { username, name, lastName, email } = useSelector(
@@ -36,14 +37,14 @@ const PersonalInfo = () => {
       const formData = new FormData();
       formData.append("image", selectedFile);
 
-      fetch("http://195.35.56.202:9090/user/picture", {
-        method: "POST",
-        body: formData,
-        headers: { Authorization: `Bearer ${token}` }
+      axios.post("http://195.35.56.202:9090/user/picture", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Response from backend:", data);
+        .then((response) => {
+          console.log("Response from backend:", response.data);
           // Handle response from backend as needed
         })
         .catch((error) => {

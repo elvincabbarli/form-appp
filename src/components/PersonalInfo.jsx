@@ -12,19 +12,20 @@ const PersonalInfo = () => {
   const dispatch = useDispatch()
   const [userData, setUserdata] = useState([])
   const { token } = useSelector((state) => state.login)
+
+  const fetchPersonalInteredtData = async () => {
+    try {
+      const response = await GetAxios("http://195.35.56.202:8080/users/me", token);
+      setUserdata(response.data)
+      dispatch(fetchPersonalInterests(response.data.interests))
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
-    (async function fetchPersonalInteredtData() {
-      try {
-        const response = await GetAxios("http://195.35.56.202:8080/users/me", token);
-        setUserdata(response.data)
-        dispatch(fetchPersonalInterests(response.data.interests))
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    })();
-
+    fetchPersonalInteredtData();
   }, []);
-
 
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -43,16 +44,17 @@ const PersonalInfo = () => {
         }
       });
 
-      console.log('Upload successful:', response.data);
-      // Optionally, you can update the user's picture in the UI here
+      if (response.status === 201) {
+        setSelectedFile(null)
+        fetchPersonalInteredtData();
+      }
+
     } catch (error) {
       console.error('Error uploading profile picture:', error);
     }
   };
 
-
   console.log(userData)
-
 
   return (
     <div className="personal-info-cont">

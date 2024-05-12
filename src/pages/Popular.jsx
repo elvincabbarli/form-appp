@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { getTimeElapsed } from "../utils/time";
 import { useSelector } from "react-redux";
+import TruncatedPost from "../components/TruncatedPost";
 
 const Popular = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -54,7 +55,7 @@ const Popular = () => {
               <Link key={post.id} to={`/post/${post.id}`}>
                 <div className="post-body">
                   <h3>{post.heading}</h3>
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                  <TruncatedPost content={post.content} />
                 </div>
               </Link>{" "}
               <hr />

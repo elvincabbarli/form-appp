@@ -99,16 +99,21 @@ const Post = () => {
         </div>
         <hr />
         <div className="post-footer">
-          <p>{singlePost?.post?.likes}👍</p>
+          <div className="like-sec">
+            {singlePost?.post?.is_user_liked === 0 ? (
+              <button className="upload-pic" onClick={handleAddLike}>
+                Like
+              </button>
+            ) : null}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <p>{singlePost?.post?.likes}</p>
+              <span>👍</span>
+            </div>
+          </div>
           <i style={{ textTransform: "capitalize" }}>
             {singlePost?.post?.category_name}
           </i>
         </div>
-        {singlePost?.post?.is_user_liked === 0 ? (
-          <button className="upload-pic" onClick={handleAddLike}>
-            Like
-          </button>
-        ) : null}
       </div>
       <div className="post-comment">
         {isLoggedIn ? (
@@ -129,7 +134,7 @@ const Post = () => {
           </>
         ) : (
           <Link to="/signin">
-            <button>Add Comment</button>
+            <button className="upload-pic">Add Comment</button>
           </Link>
         )}
       </div>

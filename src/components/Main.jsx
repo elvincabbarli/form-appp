@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { GetAxios } from "../utils/getAxios";
 import { getTimeElapsed } from "../utils/time";
+import TruncatedPost from "./TruncatedPost";
 
 const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -107,7 +108,7 @@ const Main = () => {
               <Link to={`/post/${result.id}`}>
                 <div className="post-body">
                   <h3>{result.heading}</h3>
-                  <div dangerouslySetInnerHTML={{ __html: result.content }} />
+                  <TruncatedPost content={result.content} />
                 </div>
               </Link>
 

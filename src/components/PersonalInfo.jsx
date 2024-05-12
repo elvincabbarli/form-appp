@@ -45,7 +45,7 @@ const PersonalInfo = () => {
       });
 
       if (response.status === 201) {
-        setSelectedFile(null)
+        // setSelectedFile(null)
         fetchPersonalInteredtData();
       }
 

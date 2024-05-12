@@ -107,7 +107,7 @@ const Main = () => {
           {posts.map((result, index) => (
             <li className="main-page-posts" key={index}>
               <div className="post-head">
-                <Link to={`/${result.user_id}`}>
+                <Link to={`user/${result.user_id}`}>
                   <b>@{result.username}</b>
                 </Link>
                 <p>{getTimeElapsed(result.cdate)}</p>

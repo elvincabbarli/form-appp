@@ -86,7 +86,7 @@ const Post = () => {
     <>
       <div className="main-page-posts">
         <div className="post-head">
-          <Link to={`/${singlePost?.post?.user_id}`}>
+          <Link to={`/user/${singlePost?.post?.user_id}`}>
             <b>@{singlePost?.post?.username}</b>
           </Link>
           <p>{getTimeElapsed(singlePost?.post?.cdate)}</p>
@@ -148,7 +148,7 @@ const Post = () => {
         <ul>
           {singlePost?.comments?.map((comment) => (
             <div className="main-page-posts" key={comment.id}>
-              <Link to={`/${comment.user_id}`}>{comment.username}</Link>
+              <Link to={`/user/${comment.user_id}`}>{comment.username}</Link>
               <li>{comment.content}</li>
               <li>Like: {comment.likes}</li>
 

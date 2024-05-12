@@ -48,9 +48,7 @@ const UserProfile = () => {
       {userData?.posts.map((result, index) => (
         <li className="main-page-posts" key={index}>
           <div className="post-head">
-            <Link to={`/${result.user_id}`}>
               <b>@{result.username}</b>
-            </Link>
             <p>{getTimeElapsed(result.cdate)}</p>
           </div>
           <hr />

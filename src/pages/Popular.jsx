@@ -47,7 +47,7 @@ const Popular = () => {
           {allPosts.map((post, index) => (
             <li className="main-page-posts" key={index}>
               <div className="post-head">
-                <Link to={`/${post.user_id}`}>
+                <Link to={`/user/${post.user_id}`}>
                   <b>@{post.username}</b>
                 </Link>
                 <p>{getTimeElapsed(post.cdate)}</p>
@@ -61,7 +61,7 @@ const Popular = () => {
               </Link>{" "}
               <hr />
               <div className="post-footer">
-                <p>{post.likes}&nbsp;<img style={{width: '20px'}} src={like} alt="" /></p>
+                <p>{post.likes}&nbsp;<img style={{ width: '20px' }} src={like} alt="" /></p>
                 <i style={{ textTransform: "capitalize" }}>
                   {post.category_name}
                 </i>

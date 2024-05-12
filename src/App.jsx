@@ -37,7 +37,7 @@ function App() {
           )}
           {isLoggedIn && <Route path="/followers" element={<Followers />} />}
            <Route path="/post/:post_id" element={<Post />}  />
-           <Route path="/:user_id" element={<UserProfile />}  />
+           <Route path="/user/:user_id" element={<UserProfile />}  />
         </Routes>
       </div>
     </div>

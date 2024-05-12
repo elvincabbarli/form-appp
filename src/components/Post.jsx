@@ -89,7 +89,7 @@ const Post = () => {
           <Link to={`/user/${singlePost?.post?.user_id}`}>
             <div>
               <img
-                style={{ width: "40px" }}
+                 className="user-pic"
                 src={`http://195.35.56.202:8080/upload/picture/${singlePost?.post?.user_id}`}
                 alt=""
               />
@@ -157,7 +157,7 @@ const Post = () => {
           {singlePost?.comments?.map((comment) => (
             <div className="main-page-posts" key={comment.id}>
               <img
-                style={{ width: "40px" }}
+                 className="user-pic"
                 src={`http://195.35.56.202:8080/upload/picture/${comment.user_id}`}
                 alt=""
               />

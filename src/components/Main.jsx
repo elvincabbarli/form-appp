@@ -111,7 +111,7 @@ const Main = () => {
               <div className="post-head">
                 <div>
                   <img
-                    style={{ width: "40px" }}
+                    className="user-pic"
                     src={`http://195.35.56.202:8080/upload/picture/${result.user_id}`}
                     alt=""
                   />

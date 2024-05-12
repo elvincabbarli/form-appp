@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
 import { singlePostSuccess } from "../store/postSlice";
 import axios from "axios";
+import { getTimeElapsed } from "../utils/time";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Post = () => {
     try {
       const response = await axios.get(
         `http://195.35.56.202:8080/post/${postId}`,
-        // { headers: { Authorization: `Bearer ${token}` } }
+        isLoggedIn ? { headers: { Authorization: `Bearer ${token}` } } : null
       );
       const postData = response.data;
       dispatch(singlePostSuccess(postData));
@@ -81,24 +82,34 @@ const Post = () => {
   return loading ? (
     <h1>Loading....</h1>
   ) : (
-    <div>
-      <b>Owner: </b>
-      <span>{singlePost?.post?.username}</span>
-      <h1>{singlePost?.post?.heading}</h1>
-      <b>Kateqoriya:</b> <span>{singlePost?.post?.category_name}</span> <br />
-      <b>Yaradılma Tarixi:</b> <span>{singlePost?.post?.cdate}</span>
-      <div dangerouslySetInnerHTML={{ __html: singlePost?.post?.content }} />
-      <br />
-      {singlePost?.post?.is_user_liked === 0 ? (
-        <button className="upload-pic" onClick={handleAddLike}>
-          Like
-        </button>
-      ) : null}
-      &nbsp;&nbsp;&nbsp;
-      <b>Like: </b>
-      <span>{singlePost?.post?.likes}</span>
-      <br />
-      <br />
+    <>
+      <div className="main-page-posts">
+        <div className="post-head">
+          <Link>
+            <b>@{singlePost?.post?.username}</b>
+          </Link>
+          <p>{getTimeElapsed(singlePost?.post?.cdate)}</p>
+        </div>
+        <hr />
+        <div className="post-body">
+          <h1>{singlePost?.post?.heading}</h1>
+          <div
+            dangerouslySetInnerHTML={{ __html: singlePost?.post?.content }}
+          />
+        </div>
+        <hr />
+        <div className="post-footer">
+          <p>{singlePost?.post?.likes}👍</p>
+          <i style={{ textTransform: "capitalize" }}>
+            {singlePost?.post?.category_name}
+          </i>
+        </div>
+        {singlePost?.post?.is_user_liked === 0 ? (
+          <button className="upload-pic" onClick={handleAddLike}>
+            Like
+          </button>
+        ) : null}
+      </div>
       <div className="post-comment">
         {isLoggedIn ? (
           <>
@@ -118,7 +129,7 @@ const Post = () => {
           </>
         ) : (
           <Link to="/signin">
-            <button>Add Comment</button>
+            <button>Add Comments</button>
           </Link>
         )}
       </div>
@@ -145,7 +156,7 @@ const Post = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </>
   );
 };
 

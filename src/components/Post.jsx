@@ -129,7 +129,7 @@ const Post = () => {
           </>
         ) : (
           <Link to="/signin">
-            <button>Add Comments</button>
+            <button>Add Comment</button>
           </Link>
         )}
       </div>

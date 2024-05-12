@@ -45,8 +45,8 @@ const PersonalInfo = () => {
       });
 
       if (response.status === 201) {
-        // setSelectedFile(null)
         fetchPersonalInteredtData();
+        window.location.reload()
       }
 
     } catch (error) {

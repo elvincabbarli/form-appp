@@ -4,7 +4,10 @@ import axios from "axios";
 import { getTimeElapsed } from "../utils/time";
 import { useSelector } from "react-redux";
 import TruncatedPost from "../components/TruncatedPost";
-import like from "../assets/heart.png"
+import like from "../assets/heart.png";
+import like2 from "../assets/like2.png";
+import send from "../assets/send.png";
+import comment from "../assets/comment.png";
 
 const Popular = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -47,9 +50,17 @@ const Popular = () => {
           {allPosts.map((post, index) => (
             <li className="main-page-posts" key={index}>
               <div className="post-head">
-                <Link to={`/user/${post.user_id}`}>
-                  <b>@{post.username}</b>
-                </Link>
+                <div>
+                  <img
+                    style={{ width: "40px" }}
+                    src={`http://195.35.56.202:8080/upload/picture/${post.user_id}`}
+                    alt=""
+                  />
+                  &nbsp;
+                  <Link to={`/user/${post.user_id}`}>
+                    <b>@{post.username}</b>
+                  </Link>
+                </div>
                 <p>{getTimeElapsed(post.cdate)}</p>
               </div>{" "}
               <hr />
@@ -61,21 +72,29 @@ const Popular = () => {
               </Link>{" "}
               <hr />
               <div className="post-footer">
-                <p>{post.likes}&nbsp;<img style={{ width: '20px' }} src={like} alt="" /></p>
+                <p>
+                  {post.likes}&nbsp;
+                  <img style={{ width: "20px" }} src={like} alt="" />
+                </p>
                 <i style={{ textTransform: "capitalize" }}>
                   {post.category_name}
                 </i>
               </div>
               <hr />
               <div className="action-btns">
-                <button>
-                  <Link to={`/post/${post.id}`}>Yorum</Link>
-                </button>
                 {post?.is_user_liked === 0 ? (
-                  <button onClick={() => handleAddLike(post.id)}>Bəyən</button>
+                  <Link onClick={() => handleAddLike(post.id)}>
+                    {" "}
+                    <img style={{ width: "20px" }} src={like2} alt="" />
+                  </Link>
                 ) : null}
+                <Link to={`/post/${post.id}`}>
+                  <img src={comment} alt="" />
+                </Link>
 
-                <button>Paylaş</button>
+                <Link>
+                  <img style={{ width: "20px" }} src={send} alt="" />
+                </Link>
               </div>
             </li>
           ))}

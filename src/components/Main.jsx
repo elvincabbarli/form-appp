@@ -109,10 +109,17 @@ const Main = () => {
           {posts.map((result, index) => (
             <li className="main-page-posts" key={index}>
               <div className="post-head">
-              <img src={`http://195.35.56.202:9090/user/picture/${result.user_id}`} alt="" />
-                <Link to={`user/${result.user_id}`}>
-                  <b>@{result.username}</b>
-                </Link>
+                <div>
+                  <img
+                    style={{ width: "40px" }}
+                    src={`http://195.35.56.202:8080/upload/picture/${result.user_id}`}
+                    alt=""
+                  />
+                  &nbsp;
+                  <Link to={`user/${result.user_id}`}>
+                    <b>@{result.username}</b>
+                  </Link>
+                </div>
                 <p>{getTimeElapsed(result.cdate)}</p>
               </div>
               <hr />
@@ -137,14 +144,14 @@ const Main = () => {
               <div className="action-btns">
                 {result?.is_user_liked === 0 ? (
                   <Link onClick={() => handleAddLike(result.id)}>
-                    <img  style={{width: '20px'}}  src={like2} alt="" />
+                    <img style={{ width: "20px" }} src={like2} alt="" />
                   </Link>
                 ) : null}
                 <Link to={`/post/${result.id}`}>
                   <img src={comment} alt="" />
                 </Link>
                 <Link>
-                  <img style={{width: '20px'}} src={send} alt="" />
+                  <img style={{ width: "20px" }} src={send} alt="" />
                 </Link>
               </div>
             </li>

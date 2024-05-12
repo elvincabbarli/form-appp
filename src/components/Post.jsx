@@ -87,7 +87,15 @@ const Post = () => {
       <div className="main-page-posts">
         <div className="post-head">
           <Link to={`/user/${singlePost?.post?.user_id}`}>
-            <b>@{singlePost?.post?.username}</b>
+            <div>
+              <img
+                style={{ width: "40px" }}
+                src={`http://195.35.56.202:8080/upload/picture/${singlePost?.post?.user_id}`}
+                alt=""
+              />
+              &nbsp;
+              <b>@{singlePost?.post?.username}</b>
+            </div>
           </Link>
           <p>{getTimeElapsed(singlePost?.post?.cdate)}</p>
         </div>
@@ -148,10 +156,15 @@ const Post = () => {
         <ul>
           {singlePost?.comments?.map((comment) => (
             <div className="main-page-posts" key={comment.id}>
+              <img
+                style={{ width: "40px" }}
+                src={`http://195.35.56.202:8080/upload/picture/${comment.user_id}`}
+                alt=""
+              />
+              &nbsp;
               <Link to={`/user/${comment.user_id}`}>{comment.username}</Link>
               <li>{comment.content}</li>
               <li>Like: {comment.likes}</li>
-
               {comment?.is_user_liked === 0 ? (
                 <button
                   className="upload-pic"

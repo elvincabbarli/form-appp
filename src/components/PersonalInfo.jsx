@@ -32,28 +32,27 @@ const PersonalInfo = () => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = () => {
-    if (selectedFile) {
+  const handleUpload = async () => {
+    try {
       const formData = new FormData();
-      formData.append("image", selectedFile);
-
-      axios.post("http://195.35.56.202:9090/user/picture", formData, {
+      formData.append('picture', selectedFile);
+      const response = await axios.post('http://195.35.56.202:8080/upload/picture', formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`
         }
-      })
-        .then((response) => {
-          console.log("Response from backend:", response.data);
-          // Handle response from backend as needed
-        })
-        .catch((error) => {
-          console.error("Error sending image to backend:", error);
-        });
-    } else {
-      console.error("No file selected.");
+      });
+
+      console.log('Upload successful:', response.data);
+      // Optionally, you can update the user's picture in the UI here
+    } catch (error) {
+      console.error('Error uploading profile picture:', error);
     }
   };
+
+
+  console.log(userData)
+
 
   return (
     <div className="personal-info-cont">
@@ -72,7 +71,8 @@ const PersonalInfo = () => {
                 alt="Selected"
               />
             ) : (
-              <img src={userData?.user?.picture} width="200" alt="Default" />
+              <img src={`http://195.35.56.202:8080/upload/picture/${userData?.user?.id}`} width="200" alt="Default" />
+
             )}
           </div>
           {selectedFile ? (

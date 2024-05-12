@@ -6,6 +6,7 @@ import { GetAxios } from "../utils/getAxios";
 import { getTimeElapsed } from "../utils/time";
 import TruncatedPost from "./TruncatedPost";
 
+
 const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [posts, setPosts] = useState([]);
@@ -36,7 +37,11 @@ const Main = () => {
       const response = await axios.get(
         `http://195.35.56.202:8080/search?key=${searchTerm}`
       );
-      setPosts(response.data);
+      if (response.status === 200) {
+        setPosts(response.data);
+      } else if (response.status === 404) {
+        setPosts([])
+      }
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
@@ -91,7 +96,7 @@ const Main = () => {
             placeholder="Post Axtar..."
             className="search-input"
           />
-          <button type="submit" className="search-button">
+          <button type="submit" className="upload-pic">
             Axtar
           </button>
         </form>

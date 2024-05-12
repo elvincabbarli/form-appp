@@ -18,7 +18,7 @@ const Post = () => {
     try {
       const response = await axios.get(
         `http://195.35.56.202:8080/post/${postId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        // { headers: { Authorization: `Bearer ${token}` } }
       );
       const postData = response.data;
       dispatch(singlePostSuccess(postData));

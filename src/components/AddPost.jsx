@@ -77,11 +77,12 @@ const AddPost = () => {
   return (
     <div>
       <div className="post-heading">
-        <div>
-          <label htmlFor="heading">Başlıq</label> &nbsp;&nbsp;
+        <div className="post-header">
+          <label htmlFor="heading">
+            <b>Başlıq</b>
+          </label>
           <input
             type="text"
-            id="heading"
             value={postData.heading}
             onChange={(e) =>
               setPostData((prevData) => ({
@@ -93,8 +94,10 @@ const AddPost = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="category">Kateqoriya Seçin</label> &nbsp;&nbsp;&nbsp;
+        <div className="post-header">
+          <label htmlFor="category">
+            <b>Kateqoriya</b>
+          </label>
           <select
             name="category"
             id="category"
@@ -121,13 +124,15 @@ const AddPost = () => {
         onChange={handleChange}
         theme="snow"
       />
-      <button
-        style={{ marginTop: "15px" }}
-        className="upload-pic"
-        onClick={sendToServer}
-      >
-        Paylaş
-      </button>
+      <div className="add-post">
+        <button
+          style={{ marginTop: "15px" }}
+          className="upload-pic"
+          onClick={sendToServer}
+        >
+          Paylaş
+        </button>
+      </div>
       <ToastContainer />
 
       {error && <h1>{error}</h1>}

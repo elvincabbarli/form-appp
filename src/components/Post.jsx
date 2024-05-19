@@ -89,7 +89,7 @@ const Post = () => {
           <Link to={`/user/${singlePost?.post?.user_id}`}>
             <div>
               <img
-                 className="user-pic"
+                className="user-pic"
                 src={`http://195.35.56.202:8080/${singlePost?.post?.picture}`}
                 alt=""
               />
@@ -156,23 +156,40 @@ const Post = () => {
         <ul>
           {singlePost?.comments?.map((comment) => (
             <div className="main-page-posts" key={comment.id}>
-              <img
-                 className="user-pic"
-                src={`http://195.35.56.202:8080/${comment.picture}`}
-                alt=""
-              />
-              &nbsp;
-              <Link to={`/user/${comment.user_id}`}>{comment.username}</Link>
-              <li>{comment.content}</li>
-              <li>Like: {comment.likes}</li>
-              {comment?.is_user_liked === 0 ? (
-                <button
-                  className="upload-pic"
-                  onClick={() => handleLikeComment(comment.id)}
-                >
-                  Like
-                </button>
-              ) : null}
+              <div className="post-head">
+                <div>
+                  <img
+                    className="user-pic"
+                    src={`http://195.35.56.202:8080/${comment.picture}`}
+                    alt=""
+                  />
+                  &nbsp;
+                  <Link to={`/user/${comment.user_id}`}>
+                    {comment.username}
+                  </Link>
+                </div>
+                <div>
+                  <p>
+                    {comment.likes}&nbsp;
+                    <img style={{ width: "20px" }} src={like} alt="" />
+                  </p>
+                </div>
+              </div>
+              <hr />
+              <div className="post-body">
+                <li>{comment.content}</li>
+              </div>
+              <hr />
+              <div className="post-footer">
+                {comment?.is_user_liked === 0 ? (
+                  <button
+                    className="upload-pic"
+                    onClick={() => handleLikeComment(comment.id)}
+                  >
+                    Like
+                  </button>
+                ) : null}
+              </div>
             </div>
           ))}
         </ul>

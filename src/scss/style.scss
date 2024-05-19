@@ -324,6 +324,21 @@ table {
   background-color: #fbfefb;
 }
 
+.post-header {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.post-header input,
+.post-header select {
+  width: 100%;
+}
+
 .post-heading {
   display: flex;
   justify-content: space-between;
@@ -505,6 +520,10 @@ table {
   // margin-bottom: 15px;
 }
 
+#category {
+  text-transform: capitalize;
+}
+
 .user-pic {
   width: 40px;
   height: 40px;
@@ -546,6 +565,11 @@ table {
   .mobile-part {
     display: block;
   }
+
+  .add-post .upload-pic {
+    width: 100%;
+  }
+
   .welcome,
   .posts,
   .main-posts {

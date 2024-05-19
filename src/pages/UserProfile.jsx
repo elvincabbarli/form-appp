@@ -35,9 +35,15 @@ const UserProfile = () => {
     <h1>Loading...</h1>
   ) : (
     <div>
-      <p>
-        USERNAME: <b>{userData.user.username}</b>
-      </p>
+      <div>
+        <img
+          className="user-pic"
+          src={`http://195.35.56.202:8080/${userData.user.picture}`}
+          alt=""
+        />
+        &nbsp;
+        <b>@{userData.user.username}</b>
+      </div>
       <br />
       <h3>Maraqlar</h3>
       <div className="interest-user">
@@ -48,9 +54,22 @@ const UserProfile = () => {
       {userData?.posts.map((result, index) => (
         <li className="main-page-posts" key={index}>
           <div className="post-head">
-              <b>@{result.username}</b>
-            <p>{getTimeElapsed(result.cdate)}</p>
+            <div>
+              <img
+                className="user-pic"
+                src={`http://195.35.56.202:8080/${result.picture}`}
+                alt=""
+              />
+              &nbsp;
+              <Link to={`user/${result.user_id}`}>
+                <b>@{result.username}</b>
+              </Link>
+            </div>
+            <div>
+              <p>{getTimeElapsed(result.cdate)}</p>
+            </div>
           </div>
+
           <hr />
           <Link to={`/post/${result.id}`}>
             <div className="post-body">

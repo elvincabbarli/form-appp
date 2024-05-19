@@ -108,11 +108,11 @@ const Main = () => {
             <li className="main-page-posts" key={index}>
               <div className="post-head">
                 <div>
-                  {/* <img
+                  <img
                     className="user-pic"
-                    src={`http://195.35.56.202:8080/upload/picture/${result.user_id}`}
+                    src={`http://195.35.56.202:8080/${result.picture}`}
                     alt=""
-                  /> */}
+                  />
                   &nbsp;
                   <Link to={`user/${result.user_id}`}>
                     <b>@{result.username}</b>

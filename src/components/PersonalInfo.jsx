@@ -45,7 +45,6 @@ const PersonalInfo = () => {
       });
 
       if (response.status === 201) {
-        setSelectedFile(null)
         fetchPersonalInteredtData();
       }
 
@@ -53,8 +52,6 @@ const PersonalInfo = () => {
       console.error('Error uploading profile picture:', error);
     }
   };
-
-  console.log(userData)
 
   return (
     <div className="personal-info-cont">

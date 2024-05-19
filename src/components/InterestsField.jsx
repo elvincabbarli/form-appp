@@ -8,18 +8,18 @@ import { fetchAllInterests, fetchPersonalInterests } from "../store/interestSlic
 import { GetAxios } from "../utils/getAxios";
 
 function InterestsField() {
-  const { token } = useSelector((state) => state.login)
-  const { interestAll, personalInterest } = useSelector((state) => state.interests)
+  const { token } = useSelector((state) => state.login);
+  const { interestAll, personalInterest } = useSelector((state) => state.interests);
   const [error, setError] = useState(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const [deletedId, setDeletedId] = useState(null);
 
   useEffect(() => {
     (async function fetchCategoryData() {
       try {
-        const response = await GetAxios('http://195.35.56.202:8080/category', token)
-        dispatch(fetchAllInterests(response.data))
+        const response = await GetAxios('http://195.35.56.202:8080/category', token);
+        dispatch(fetchAllInterests(response.data));
       } catch (error) {
         setError(error);
       }
@@ -84,15 +84,13 @@ function InterestsField() {
               id={item.id}
               name="interest"
               value={item.id}
-              onChange={handleCheckboxChange.bind(null, item)}
-              checked={personalInterest.find(arg => arg.id === item.id)}
+              onChange={(event) => handleCheckboxChange(item, event)}
+              checked={!!personalInterest.find(arg => arg.id === item.id)}
               className="interest-checkbox"
             />
             {item.name}
           </label>
         ))}
-
-        {/* Rest of your checkboxes */}
       </div>
       <button
         style={{ marginTop: "10px" }}

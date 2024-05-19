@@ -18,6 +18,7 @@ const PersonalInfo = () => {
       const response = await GetAxios("http://195.35.56.202:8080/users/me", token);
       setUserdata(response.data)
       dispatch(fetchPersonalInterests(response.data.interests))
+      setSelectedFile(null)
     } catch (error) {
       console.error("Error fetching data:", error);
     }

@@ -34,13 +34,12 @@ const MyInterests = () => {
                 }
             });
 
-            // Filter the personalPosts array to remove the deleted post
             const updatedInterest = personalInterest.filter((post) => post.id !== interestId);
 
-            // Dispatch an action to update the state with the filtered array
+
             dispatch(fetchPersonalInterests(updatedInterest));
         } catch (error) {
-            console.log(error); // Handle error properly
+            console.log(error);
         }
     };
 

@@ -5,6 +5,7 @@ import { postSuccess } from "../store/postSlice";
 import axios from "axios";
 import { GetAxios } from "../utils/getAxios";
 import { Link } from "react-router-dom";
+import like from "../assets/heart.png";
 import { getTimeElapsed } from "../utils/time";
 
 const MyPosts = () => {
@@ -78,17 +79,23 @@ const MyPosts = () => {
               </Link>
               <hr />
               <div className="post-footer">
-                <p>{post.likes}👍</p>
-                <i style={{ textTransform: "capitalize" }}>
-                  {post.category_name}
-                </i>
+                <p>
+                  {post.likes}&nbsp;
+                  <img style={{ width: "20px" }} src={like} alt="" />
+                </p>
+                <hr />
+                <b>
+                  <i style={{ textTransform: "capitalize" }}>
+                    {post.category_name}
+                  </i>
+                </b>
               </div>
               <div className="actions-btns">
                 <button
                   onClick={() => handleDelete(post.id)}
                   className="upload-pic"
                 >
-                  Delete
+                  Postu Sil
                 </button>
               </div>
             </li>

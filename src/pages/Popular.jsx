@@ -52,7 +52,7 @@ const Popular = () => {
               <div className="post-head">
                 <div>
                   <img
-                     className="user-pic"
+                    className="user-pic"
                     src={`http://195.35.56.202:8080/${post.picture}`}
                     alt=""
                   />
@@ -76,9 +76,11 @@ const Popular = () => {
                   {post.likes}&nbsp;
                   <img style={{ width: "20px" }} src={like} alt="" />
                 </p>
-                <i style={{ textTransform: "capitalize" }}>
-                  {post.category_name}
-                </i>
+                <b>
+                  <i style={{ textTransform: "capitalize" }}>
+                    {post.category_name}
+                  </i>
+                </b>
               </div>
               <hr />
               <div className="action-btns">

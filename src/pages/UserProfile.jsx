@@ -84,9 +84,11 @@ const UserProfile = () => {
               {result.likes}&nbsp;
               <img style={{ width: "20px" }} src={like} alt="" />
             </p>
-            <i style={{ textTransform: "capitalize" }}>
-              {result.category_name}
-            </i>
+            <b>
+              <i style={{ textTransform: "capitalize" }}>
+                {result.category_name}
+              </i>
+            </b>
           </div>
           <hr />
         </li>

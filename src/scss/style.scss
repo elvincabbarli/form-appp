@@ -322,6 +322,10 @@ table {
   padding: 10px;
   border-radius: 10px 5px;
   background-color: #fbfefb;
+
+  a {
+    color: #000;
+  }
 }
 
 .post-header {
@@ -361,6 +365,10 @@ table {
   display: flex;
   gap: 15px;
   align-items: center;
+
+  p {
+    text-transform: capitalize;
+  }
 
   button {
     border: none;

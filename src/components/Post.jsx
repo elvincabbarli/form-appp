@@ -119,9 +119,11 @@ const Post = () => {
               <img style={{ width: "20px" }} src={like} alt="" />
             </div>
           </div>
-          <i style={{ textTransform: "capitalize" }}>
-            {singlePost?.post?.category_name}
-          </i>
+          <b>
+            <i style={{ textTransform: "capitalize" }}>
+              {singlePost?.post?.category_name}
+            </i>
+          </b>
         </div>
 
         <div className="post-comment">

@@ -46,7 +46,6 @@ const PersonalInfo = () => {
 
       if (response.status === 201) {
         fetchPersonalInteredtData();
-        window.location.reload()
       }
 
     } catch (error) {
@@ -73,7 +72,7 @@ const PersonalInfo = () => {
                 alt="Selected"
               />
             ) : (
-              <img src={`http://195.35.56.202:8080/upload/picture/${userData?.user?.id}`} width="200" alt="Default" />
+              <img src={`http://195.35.56.202:8080/${userData?.user?.picture}`} width="200" alt="Default" />
 
             )}
           </div>

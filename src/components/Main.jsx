@@ -28,7 +28,7 @@ const Main = () => {
         { post_id: id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setLiked(true);
+      setLiked(!liked);
     } catch (error) {
       console.error("Error adding like:", error);
     }
@@ -83,8 +83,6 @@ const Main = () => {
     }
   }, [isLoggedIn, token, liked]);
 
-  console.log(posts);
-
   return (
     <div>
       <h2 style={{ marginBottom: "15px" }}>Bütün Postlar</h2>
@@ -110,11 +108,11 @@ const Main = () => {
             <li className="main-page-posts" key={index}>
               <div className="post-head">
                 <div>
-                  <img
+                  {/* <img
                     className="user-pic"
                     src={`http://195.35.56.202:8080/upload/picture/${result.user_id}`}
                     alt=""
-                  />
+                  /> */}
                   &nbsp;
                   <Link to={`user/${result.user_id}`}>
                     <b>@{result.username}</b>

@@ -51,11 +51,11 @@ const Popular = () => {
             <li className="main-page-posts" key={index}>
               <div className="post-head">
                 <div>
-                  <img
+                  {/* <img
                      className="user-pic"
                     src={`http://195.35.56.202:8080/upload/picture/${post.user_id}`}
                     alt=""
-                  />
+                  /> */}
                   &nbsp;
                   <Link to={`/user/${post.user_id}`}>
                     <b>@{post.username}</b>

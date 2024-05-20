@@ -7,6 +7,7 @@ import { GetAxios } from "../utils/getAxios";
 import { Link } from "react-router-dom";
 import like from "../assets/heart.png";
 import { getTimeElapsed } from "../utils/time";
+import comment from "../assets/comment.png";
 
 const MyPosts = () => {
   const { personalPosts, loading } = useSelector((state) => state.post);
@@ -79,17 +80,29 @@ const MyPosts = () => {
               </Link>
               <hr />
               <div className="post-footer">
-                <p>
-                  {post.likes}&nbsp;
-                  <img style={{ width: "20px" }} src={like} alt="" />
-                </p>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                >
+                  <p>
+                    {post.likes}&nbsp;
+                    <img style={{ width: "20px" }} src={like} alt="" />
+                  </p>
+                  <b className="comment-number">
+                    {post.comment_count}{" "}
+                    <img style={{ width: "20px" }} src={comment} alt="" />
+                  </b>
+                </div>
                 <hr />
                 <b>
-                  <i style={{ textTransform: "capitalize" }}>
+                  <Link
+                    to={`/category/${post.category_id}`}
+                    className="category-link"
+                  >
                     {post.category_name}
-                  </i>
+                  </Link>
                 </b>
-              </div>
+              </div><hr />
+              <br />
               <div className="actions-btns">
                 <button
                   onClick={() => handleDelete(post.id)}

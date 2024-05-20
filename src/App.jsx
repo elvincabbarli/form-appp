@@ -13,6 +13,7 @@ import Followers from "./pages/Followers";
 import Post from "./components/Post";
 import Popular from "./pages/Popular";
 import UserProfile from "./pages/UserProfile";
+import CategoryPost from "./pages/CategoryPost";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.login);
@@ -38,6 +39,7 @@ function App() {
           {isLoggedIn && <Route path="/followers" element={<Followers />} />}
            <Route path="/post/:post_id" element={<Post />}  />
            <Route path="/user/:user_id" element={<UserProfile />}  />
+           <Route path="/category/:post_id" element={<CategoryPost />}  />
         </Routes>
       </div>
     </div>

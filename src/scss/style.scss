@@ -19,7 +19,12 @@ a {
 }
 
 .main-posts a {
-  color: #000 !important;
+  color: #000;
+}
+
+.comment-number{
+  display: flex;
+  gap: 2px;
 }
 
 p {
@@ -127,7 +132,7 @@ ul {
 
 .action-btns {
   display: flex;
-  gap: 5px;
+  gap: 15px;
   margin-top: 15px;
 
   a {
@@ -329,8 +334,13 @@ table {
   }
 }
 
+
+.category-link{
+  text-transform: capitalize;
+  color: blue !important;
+}
+
 .post-header {
-  max-width: 500px;
   width: 100%;
   display: flex;
   align-items: center;

@@ -135,9 +135,12 @@ const Main = () => {
                   <img style={{ width: "20px" }} src={like} alt="" />
                 </p>
                 <b>
-                  <i style={{ textTransform: "capitalize" }}>
+                  <Link
+                    to={`/category/${result.category_id}`}
+                    className="category-link"
+                  >
                     {result.category_name}
-                  </i>
+                  </Link>
                 </b>
               </div>
               <hr />
@@ -148,8 +151,9 @@ const Main = () => {
                   </Link>
                 ) : null}
                 <Link to={`/post/${result.id}`}>
-                  <b>{result.comment_count}</b> &nbsp;
-                  <img src={comment} alt="" />
+                  <b className="comment-number">
+                    {result.comment_count} <img src={comment} alt="" />
+                  </b>
                 </Link>
                 <Link>
                   <img style={{ width: "20px" }} src={send} alt="" />

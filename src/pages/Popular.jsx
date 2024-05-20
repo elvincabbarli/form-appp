@@ -77,9 +77,12 @@ const Popular = () => {
                   <img style={{ width: "20px" }} src={like} alt="" />
                 </p>
                 <b>
-                  <i style={{ textTransform: "capitalize" }}>
+                <Link
+                    to={`/category/${post.category_id}`}
+                    className="category-link"
+                  >
                     {post.category_name}
-                  </i>
+                  </Link>
                 </b>
               </div>
               <hr />
@@ -91,8 +94,9 @@ const Popular = () => {
                   </Link>
                 ) : null}
                 <Link to={`/post/${post.id}`}>
-                   <b>{post.comment_count}</b> &nbsp;
-                  <img src={comment} alt="" />
+                <b className="comment-number">
+                    {post.comment_count} <img src={comment} alt="" />
+                  </b>
                 </Link>
 
                 <Link>

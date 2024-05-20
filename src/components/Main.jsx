@@ -148,6 +148,7 @@ const Main = () => {
                   </Link>
                 ) : null}
                 <Link to={`/post/${result.id}`}>
+                  <span>{result.comment_count}</span>
                   <img src={comment} alt="" />
                 </Link>
                 <Link>

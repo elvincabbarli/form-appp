@@ -91,6 +91,7 @@ const Popular = () => {
                   </Link>
                 ) : null}
                 <Link to={`/post/${post.id}`}>
+                   <i>{result.comment_count}</i> &nbsp;
                   <img src={comment} alt="" />
                 </Link>
 

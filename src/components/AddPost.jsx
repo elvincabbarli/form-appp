@@ -14,6 +14,7 @@ const AddPost = () => {
     heading: "",
     content: "",
     categoryId: "",
+    images: [],
   });
   const { interestAll } = useSelector((state) => state.interests);
   const { token } = useSelector((state) => state.login);
@@ -28,34 +29,46 @@ const AddPost = () => {
     }));
   };
 
-  const sendToServer = () => {
-    axios
-      .post(
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setPostData((prevData) => ({
+      ...prevData,
+      images: files,
+    }));
+  };
+
+  const sendToServer = async () => {
+    const formData = new FormData();
+    formData.append("heading", postData.heading);
+    formData.append("content", postData.content);
+    formData.append("category_id", postData.categoryId);
+    postData.images.forEach((image, i) => {
+      formData.append(`images[${i}]`, image);
+    });
+
+    try {
+      const response = await axios.post(
         "http://195.35.56.202:8080/post",
-        {
-          heading: postData.heading,
-          content: postData.content,
-          category_id: postData.categoryId,
-        },
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
-      )
-      .then((response) => {
-        setPostData({
-          heading: "",
-          content: "",
-          categoryId: "",
-        });
-        toast.success("Paylaşıldı");
-        return response;
-      })
-      .catch((error) => {
-        toast.error("Xeta Baş verdi");
-        console.error("Error sending value to server:", error);
+      );
+      setPostData({
+        heading: "",
+        content: "",
+        categoryId: "",
+        images: [],
       });
+      toast.success("Paylaşıldı");
+      return response;
+    } catch (error) {
+      toast.error("Xeta Baş verdi");
+      console.error("Error sending value to server:", error);
+    }
   };
 
   useEffect(() => {
@@ -72,7 +85,7 @@ const AddPost = () => {
     };
 
     fetchData();
-  }, []);
+  }, [dispatch, token]);
 
   return (
     <div>
@@ -124,6 +137,19 @@ const AddPost = () => {
         onChange={handleChange}
         theme="snow"
       />
+      
+      <div className="post-header">
+        <label htmlFor="images">
+          <b>Şəkillər</b>
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handleImageChange}
+        />
+      </div>
+      
       <div className="add-post">
         <button
           style={{ marginTop: "15px" }}

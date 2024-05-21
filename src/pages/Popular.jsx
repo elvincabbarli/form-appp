@@ -8,6 +8,7 @@ import like from "../assets/heart.png";
 import like2 from "../assets/like2.png";
 import send from "../assets/send.png";
 import comment from "../assets/comment.png";
+import Slider from "react-slick";
 
 const Popular = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -25,6 +26,19 @@ const Popular = () => {
       console.error("Error adding like:", error);
     }
   };
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    accessibility: false,
+    focusOnSelect: false,
+    focusOnChange: false,
+    center: true,
+  };
+
 
   useEffect(() => {
     (async function getAllPosts() {
@@ -67,21 +81,22 @@ const Popular = () => {
               <Link key={post.id} to={`/post/${post.id}`}>
                 <div className="post-body">
                   <h3>{post.heading}</h3>
-                  <div className="post-images">
-                    {post.images &&
-                      post.images
-                        .split(", ")
-                        .map((image, idx) => (
-                          <img
-                            key={idx}
-                            className="post-image"
-                            src={`http://195.35.56.202:8080/${image}`}
-                            alt={`Post image ${idx + 1}`}
-                            
-                          />
-                        ))}
-                  </div>
                   <TruncatedPost content={post.content} />
+                  <div className="post-images">
+                    {post.images && (
+                      <Slider {...sliderSettings}>
+                        {post.images.split(", ").map((image, idx) => (
+                          <div key={idx}>
+                            <img
+                              className="post-image"
+                              src={`http://195.35.56.202:8080/${image}`}
+                              alt={`Post image ${idx + 1}`}
+                            />
+                          </div>
+                        ))}
+                      </Slider>
+                    )}
+                  </div>
                 </div>
               </Link>{" "}
               <hr />
@@ -91,7 +106,7 @@ const Popular = () => {
                   <img style={{ width: "20px" }} src={like} alt="" />
                 </p>
                 <b>
-                <Link
+                  <Link
                     to={`/category/${post.category_id}`}
                     className="category-link"
                   >
@@ -108,7 +123,7 @@ const Popular = () => {
                   </Link>
                 ) : null}
                 <Link to={`/post/${post.id}`}>
-                <b className="comment-number">
+                  <b className="comment-number">
                     {post.comment_count} <img src={comment} alt="" />
                   </b>
                 </Link>

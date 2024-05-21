@@ -5,6 +5,7 @@ import { singlePostSuccess } from "../store/postSlice";
 import axios from "axios";
 import { getTimeElapsed } from "../utils/time";
 import like from "../assets/heart.png";
+import Slider from "react-slick";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,19 @@ const Post = () => {
       console.error("Error adding like:", error);
     }
   };
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    accessibility: false,
+    focusOnSelect: false,
+    focusOnChange: false,
+    center: true,
+  };
+
 
   const handleAddComment = async () => {
     if (!commentText) {
@@ -102,23 +116,24 @@ const Post = () => {
         <hr />
         <div className="post-body">
           <h1>{singlePost?.post?.heading}</h1>
-          <div className="post-images">
-            {singlePost?.post?.images &&
-              singlePost?.post?.images
-                .split(", ")
-                .map((image, idx) => (
-                  <img
-                    key={idx}
-                    className="post-image"
-                    src={`http://195.35.56.202:8080/${image}`}
-                    alt={`Post image ${idx + 1}`}
-
-                  />
-                ))}
-          </div>
           <div
             dangerouslySetInnerHTML={{ __html: singlePost?.post?.content }}
           />
+        </div>
+        <div className="post-images">
+          {singlePost?.post?.images && (
+            <Slider {...sliderSettings}>
+              {singlePost?.post?.images.split(", ").map((image, idx) => (
+                <div key={idx}>
+                  <img
+                    className="post-image"
+                    src={`http://195.35.56.202:8080/${image}`}
+                    alt={`Post image ${idx + 1}`}
+                  />
+                </div>
+              ))}
+            </Slider>
+          )}
         </div>
         <hr />
         <div className="post-footer">
@@ -134,9 +149,12 @@ const Post = () => {
             </div>
           </div>
           <b>
-            <i style={{ textTransform: "capitalize" }}>
+            <Link
+              to={`/category/${singlePost?.post?.category_id}`}
+              className="category-link"
+            >
               {singlePost?.post?.category_name}
-            </i>
+            </Link>
           </b>
         </div>
 

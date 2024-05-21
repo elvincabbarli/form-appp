@@ -8,11 +8,25 @@ import { Link } from "react-router-dom";
 import like from "../assets/heart.png";
 import { getTimeElapsed } from "../utils/time";
 import comment from "../assets/comment.png";
+import Slider from "react-slick";
 
 const MyPosts = () => {
   const { personalPosts, loading } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.login);
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    accessibility: false,
+    focusOnSelect: false,
+    focusOnChange: false,
+    center: true,
+  };
+
 
   useEffect(() => {
     const fetchMyPosts = async () => {
@@ -75,21 +89,22 @@ const MyPosts = () => {
               <Link to={`/post/${post.id}`}>
                 <div className="post-body">
                   <h3>{post.heading}</h3>
-                  <div className="post-images">
-                    {post.images &&
-                      post.images
-                        .split(", ")
-                        .map((image, idx) => (
-                          <img
-                            key={idx}
-                            className="post-image"
-                            src={`http://195.35.56.202:8080/${image}`}
-                            alt={`Post image ${idx + 1}`}
-                            
-                          />
-                        ))}
-                  </div>
                   <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                  <div className="post-images">
+                    {post.images && (
+                      <Slider {...sliderSettings}>
+                        {post.images.split(", ").map((image, idx) => (
+                          <div key={idx}>
+                            <img
+                              className="post-image"
+                              src={`http://195.35.56.202:8080/${image}`}
+                              alt={`Post image ${idx + 1}`}
+                            />
+                          </div>
+                        ))}
+                      </Slider>
+                    )}
+                  </div>
                 </div>
               </Link>
               <hr />

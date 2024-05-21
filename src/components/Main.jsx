@@ -89,13 +89,13 @@ const Main = () => {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    focusOnSelect: false,
     accessibility: false,
-    center: true
+    focusOnSelect: false,
+    focusOnChange: false,
+    center: true,
   };
 
   return (
@@ -137,10 +137,11 @@ const Main = () => {
               </div>
               <hr />
 
-              {/* <Link to={`/post/${result.id}`}> */}
               <div className="post-body">
-                <h3>{result.heading}</h3>
-                <TruncatedPost content={result.content} />
+                <Link to={`/post/${result.id}`}>
+                  <h3>{result.heading}</h3>
+                  <TruncatedPost content={result.content} />
+                </Link>
                 <div className="post-images">
                   {result.images && (
                     <Slider {...sliderSettings}>
@@ -157,7 +158,6 @@ const Main = () => {
                   )}
                 </div>
               </div>
-              {/* </Link> */}
 
               <hr />
               <div className="post-footer">

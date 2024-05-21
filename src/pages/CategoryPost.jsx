@@ -7,6 +7,7 @@ import TruncatedPost from '../components/TruncatedPost';
 import like from "../assets/heart.png";
 import send from "../assets/send.png";
 import comment from "../assets/comment.png";
+import Slider from 'react-slick';
 
 
 // eslint-disable-next-line react/prop-types
@@ -43,7 +44,19 @@ const CategoryPost = () => {
     }
   }, [isLoggedIn, post_id, token]);
 
-  console.log(catPost)
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    accessibility: false,
+    focusOnSelect: false,
+    focusOnChange: false,
+    center: true,
+  };
+
+
   return (
     <div className="main-posts">
       {catPost?.map((result, index) => (
@@ -66,21 +79,22 @@ const CategoryPost = () => {
           <Link to={`/post/${result.id}`}>
             <div className="post-body">
               <h3>{result.heading}</h3>
-              <div className="post-images">
-                {result.images &&
-                  result.images
-                    .split(", ")
-                    .map((image, idx) => (
-                      <img
-                        key={idx}
-                        className="post-image"
-                        src={`http://195.35.56.202:8080/${image}`}
-                        alt={`Post image ${idx + 1}`}
-
-                      />
-                    ))}
-              </div>
               <TruncatedPost content={result.content} />
+              <div className="post-images">
+                {result.images && (
+                  <Slider {...sliderSettings}>
+                    {result.images.split(", ").map((image, idx) => (
+                      <div key={idx}>
+                        <img
+                          className="post-image"
+                          src={`http://195.35.56.202:8080/${image}`}
+                          alt={`Post image ${idx + 1}`}
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                )}
+              </div>
             </div>
           </Link>
 

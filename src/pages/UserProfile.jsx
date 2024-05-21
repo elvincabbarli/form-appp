@@ -6,6 +6,7 @@ import { getTimeElapsed } from "../utils/time";
 import TruncatedPost from "../components/TruncatedPost";
 
 import like from "../assets/heart.png";
+import Slider from "react-slick";
 
 const UserProfile = () => {
   const { user_id } = useParams();
@@ -27,6 +28,19 @@ const UserProfile = () => {
       setLoading(false);
     }
   };
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    accessibility: false,
+    focusOnSelect: false,
+    focusOnChange: false,
+    center: true,
+  };
+
 
   useEffect(() => {
     fetchPostData();
@@ -74,20 +88,22 @@ const UserProfile = () => {
           <Link to={`/post/${result.id}`}>
             <div className="post-body">
               <h3>{result.heading}</h3>
-              <div className="post-images">
-                {result.images &&
-                  result.images
-                    .split(", ")
-                    .map((image, idx) => (
-                      <img
-                        key={idx}
-                        className="post-image"
-                        src={`http://195.35.56.202:8080/${image}`}
-                        alt={`Post image ${idx + 1}`}
-                      />
-                    ))}
-              </div>
               <TruncatedPost content={result.content} />
+              <div className="post-images">
+                {result.images && (
+                  <Slider {...sliderSettings}>
+                    {result.images.split(", ").map((image, idx) => (
+                      <div key={idx}>
+                        <img
+                          className="post-image"
+                          src={`http://195.35.56.202:8080/${image}`}
+                          alt={`Post image ${idx + 1}`}
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                )}
+              </div>
             </div>
           </Link>
 
@@ -98,9 +114,12 @@ const UserProfile = () => {
               <img style={{ width: "20px" }} src={like} alt="" />
             </p>
             <b>
-              <i style={{ textTransform: "capitalize" }}>
+              <Link
+                to={`/category/${result.category_id}`}
+                className="category-link"
+              >
                 {result.category_name}
-              </i>
+              </Link>
             </b>
           </div>
           <hr />

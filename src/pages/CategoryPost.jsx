@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import { GetAxios } from '../utils/getAxios';
 import { getTimeElapsed } from '../utils/time';
 import TruncatedPost from '../components/TruncatedPost';

@@ -50,6 +50,11 @@ const Main = () => {
     }
   };
 
+    const getAllImages = (images) => {
+    // Assuming the images are in a single string and need to be split
+    return images[0].split(',').map(image => image.trim());
+  };
+
   useEffect(() => {
     if (isLoggedIn) {
       (async function getMyInteresPosts() {
@@ -104,8 +109,10 @@ const Main = () => {
           </button>
         </form>
         <div className="main-posts">
-          {posts.map((result, index) => (
-            <li className="main-page-posts" key={index}>
+          {posts.map((result, index) => {
+const imagePaths = getAllImages(result.images);
+          return(
+          <li className="main-page-posts" key={index}>
               <div className="post-head">
                 <div>
                   <img
@@ -125,6 +132,9 @@ const Main = () => {
                 <div className="post-body">
                   <h3>{result.heading}</h3>
                   <TruncatedPost content={result.content} />
+                   {imagePaths.map((imagePath, index) => (
+              <img key={index} src={imagePath} alt={`Post ${result.id} Image ${index + 1}`} />
+            ))}
                 </div>
               </Link>
 
@@ -160,7 +170,8 @@ const Main = () => {
                 </Link>
               </div>
             </li>
-          ))}
+          )
+          })}
         </div>
       </div>
     </div>

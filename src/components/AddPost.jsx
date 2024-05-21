@@ -43,7 +43,7 @@ const AddPost = () => {
     formData.append("content", postData.content);
     formData.append("category_id", postData.categoryId);
     postData.images.forEach((image, i) => {
-      formData.append(`images[${i}]`, image);
+      formData.append("images", image);
     });
 
     try {
@@ -137,7 +137,7 @@ const AddPost = () => {
         onChange={handleChange}
         theme="snow"
       />
-      
+
       <div className="post-header">
         <label htmlFor="images">
           <b>Şəkillər</b>
@@ -149,7 +149,7 @@ const AddPost = () => {
           onChange={handleImageChange}
         />
       </div>
-      
+
       <div className="add-post">
         <button
           style={{ marginTop: "15px" }}
@@ -161,7 +161,7 @@ const AddPost = () => {
       </div>
       <ToastContainer />
 
-      {error && <h1>{error}</h1>}
+      {error && <h1>{error.message}</h1>}
     </div>
   );
 };

@@ -42,7 +42,7 @@ const AddPost = () => {
     formData.append("heading", postData.heading);
     formData.append("content", postData.content);
     formData.append("category_id", postData.categoryId);
-    postData.images.forEach((image, i) => {
+    postData.images.forEach((image) => {
       formData.append("images", image);
     });
 
@@ -138,13 +138,15 @@ const AddPost = () => {
         theme="snow"
       />
 
-      <div className="post-header">
-        <label htmlFor="images">
+      <div className="post-header-2">
+        <label style={{ marginBottom: "10x" }} htmlFor="images">
           <b>Şəkillər</b>
         </label>
         <input
           type="file"
+          className="custom-file-input"
           accept="image/*"
+          id="images"
           multiple
           onChange={handleImageChange}
         />
@@ -152,7 +154,7 @@ const AddPost = () => {
 
       <div className="add-post">
         <button
-          style={{ marginTop: "15px" }}
+          style={{ margin: "15px 0" }}
           className="upload-pic"
           onClick={sendToServer}
         >

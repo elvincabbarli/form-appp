@@ -5,10 +5,13 @@ import axios from "axios";
 import { GetAxios } from "../utils/getAxios";
 import { getTimeElapsed } from "../utils/time";
 import TruncatedPost from "./TruncatedPost";
+import Slider from "react-slick";
 import like from "../assets/heart.png";
 import like2 from "../assets/like2.png";
 import send from "../assets/send.png";
 import comment from "../assets/comment.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -83,6 +86,18 @@ const Main = () => {
     }
   }, [isLoggedIn, token, liked]);
 
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    focusOnSelect: false,
+    accessibility: false,
+    center: true
+  };
+
   return (
     <div>
       <h2 style={{ marginBottom: "15px" }}>Bütün Postlar</h2>
@@ -122,26 +137,27 @@ const Main = () => {
               </div>
               <hr />
 
-              <Link to={`/post/${result.id}`}>
-                <div className="post-body">
-                  <h3>{result.heading}</h3>
-                  <div className="post-images">
-                    {result.images &&
-                      result.images
-                        .split(", ")
-                        .map((image, idx) => (
+              {/* <Link to={`/post/${result.id}`}> */}
+              <div className="post-body">
+                <h3>{result.heading}</h3>
+                <TruncatedPost content={result.content} />
+                <div className="post-images">
+                  {result.images && (
+                    <Slider {...sliderSettings}>
+                      {result.images.split(", ").map((image, idx) => (
+                        <div key={idx}>
                           <img
-                            key={idx}
                             className="post-image"
                             src={`http://195.35.56.202:8080/${image}`}
                             alt={`Post image ${idx + 1}`}
-                            
                           />
-                        ))}
-                  </div>
-                  <TruncatedPost content={result.content} />
+                        </div>
+                      ))}
+                    </Slider>
+                  )}
                 </div>
-              </Link>
+              </div>
+              {/* </Link> */}
 
               <hr />
               <div className="post-footer">

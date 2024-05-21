@@ -9,10 +9,10 @@ import comment from "../assets/comment.png";
 
 
 // eslint-disable-next-line react/prop-types
-const CategoryPost = ({ isLoggedIn, token }) => {
+const CategoryPost = () => {
   const { post_id } = useParams();
   const [catPost, setCatPost] = useState(null);
-
+  const { isLoggedIn } = useSelector((state) => state.login);
 
 
   useEffect(() => {

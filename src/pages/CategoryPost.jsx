@@ -17,30 +17,30 @@ const CategoryPost = () => {
   const { token } = useSelector((state) => state.login);
 
   useEffect(() => {
-    if(isLoggedIn){
-    async function getCategoryPosts() {
-      try {
-        const { data } = await GetAxios(`http://195.35.56.202:8080/post/category/${post_id}`, token);
-        setCatPost(data);
-      } catch (error) {
-        console.log(error);
-      }
+    if (isLoggedIn) {
+      (async function getCategoryPosts() {
+        try {
+          const { data } = await GetAxios(
+            `http://195.35.56.202:8080/post/category/${post_id}`,
+            token
+          );
+          setCatPost(data);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    } else {
+      (async function getCategoryPosts() {
+        try {
+          const { data } = await GetAxios(
+            `http://195.35.56.202:8080/post/category/${post_id}`
+          );
+          setCatPost(data);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
     }
-      
-    }
-    else{
-          async function getCategoryPosts() {
-      try {
-        const { data } = await GetAxios(`http://195.35.56.202:8080/post/category/${post_id}`);
-        setCatPost(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    }
-
-
-    getCategoryPosts();
   }, [isLoggedIn, post_id, token]);
 
   console.log(catPost)

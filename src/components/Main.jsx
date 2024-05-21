@@ -50,11 +50,6 @@ const Main = () => {
     }
   };
 
-    const getAllImages = (images) => {
-    // Assuming the images are in a single string and need to be split
-    return images[0].split(',').map(image => image.trim());
-  };
-
   useEffect(() => {
     if (isLoggedIn) {
       (async function getMyInteresPosts() {
@@ -109,10 +104,8 @@ const Main = () => {
           </button>
         </form>
         <div className="main-posts">
-          {posts.map((result, index) => {
-const imagePaths = getAllImages(result.images);
-          return(
-          <li className="main-page-posts" key={index}>
+          {posts.map((result, index) => (
+            <li className="main-page-posts" key={index}>
               <div className="post-head">
                 <div>
                   <img
@@ -128,13 +121,25 @@ const imagePaths = getAllImages(result.images);
                 <p>{getTimeElapsed(result.cdate)}</p>
               </div>
               <hr />
+
               <Link to={`/post/${result.id}`}>
                 <div className="post-body">
                   <h3>{result.heading}</h3>
+                  <div className="post-images">
+                    {result.images &&
+                      result.images
+                        .split(", ")
+                        .map((image, idx) => (
+                          <img
+                            key={idx}
+                            className="post-image"
+                            src={`http://195.35.56.202:8080/${image}`}
+                            alt={`Post image ${idx + 1}`}
+                            
+                          />
+                        ))}
+                  </div>
                   <TruncatedPost content={result.content} />
-                   {imagePaths.map((imagePath, index) => (
-              <img key={index} src={imagePath} alt={`Post ${result.id} Image ${index + 1}`} />
-            ))}
                 </div>
               </Link>
 
@@ -170,8 +175,7 @@ const imagePaths = getAllImages(result.images);
                 </Link>
               </div>
             </li>
-          )
-          })}
+          ))}
         </div>
       </div>
     </div>

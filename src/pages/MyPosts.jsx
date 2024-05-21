@@ -75,6 +75,20 @@ const MyPosts = () => {
               <Link to={`/post/${post.id}`}>
                 <div className="post-body">
                   <h3>{post.heading}</h3>
+                  <div className="post-images">
+                    {post.images &&
+                      post.images
+                        .split(", ")
+                        .map((image, idx) => (
+                          <img
+                            key={idx}
+                            className="post-image"
+                            src={`http://195.35.56.202:8080/${image}`}
+                            alt={`Post image ${idx + 1}`}
+                            
+                          />
+                        ))}
+                  </div>
                   <div dangerouslySetInnerHTML={{ __html: post.content }} />
                 </div>
               </Link>

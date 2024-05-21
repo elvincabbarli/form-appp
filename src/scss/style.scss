@@ -137,8 +137,9 @@ ul {
   flex-wrap: wrap;
 
   img {
-    max-width: 100%;
+    width: 200px;
     height: 200px;
+    object-fit: cover;
     margin-bottom: 10px;
   }
 }
@@ -681,5 +682,16 @@ table {
 
   .side-links a {
     padding: 5px 15px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .post-images {
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
   }
 }

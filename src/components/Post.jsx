@@ -102,6 +102,20 @@ const Post = () => {
         <hr />
         <div className="post-body">
           <h1>{singlePost?.post?.heading}</h1>
+          <div className="post-images">
+            {singlePost?.post?.images &&
+              singlePost?.post?.images
+                .split(", ")
+                .map((image, idx) => (
+                  <img
+                    key={idx}
+                    className="post-image"
+                    src={`http://195.35.56.202:8080/${image}`}
+                    alt={`Post image ${idx + 1}`}
+
+                  />
+                ))}
+          </div>
           <div
             dangerouslySetInnerHTML={{ __html: singlePost?.post?.content }}
           />

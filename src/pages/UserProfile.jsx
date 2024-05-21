@@ -74,6 +74,19 @@ const UserProfile = () => {
           <Link to={`/post/${result.id}`}>
             <div className="post-body">
               <h3>{result.heading}</h3>
+              <div className="post-images">
+                {result.images &&
+                  result.images
+                    .split(", ")
+                    .map((image, idx) => (
+                      <img
+                        key={idx}
+                        className="post-image"
+                        src={`http://195.35.56.202:8080/${image}`}
+                        alt={`Post image ${idx + 1}`}
+                      />
+                    ))}
+              </div>
               <TruncatedPost content={result.content} />
             </div>
           </Link>

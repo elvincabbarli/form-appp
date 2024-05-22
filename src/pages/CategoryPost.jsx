@@ -8,6 +8,7 @@ import like from "../assets/heart.png";
 import send from "../assets/send.png";
 import comment from "../assets/comment.png";
 import Slider from 'react-slick';
+import axios from 'axios';
 
 
 // eslint-disable-next-line react/prop-types
@@ -33,7 +34,7 @@ const CategoryPost = () => {
     } else {
       (async function getCategoryPosts() {
         try {
-          const { data } = await GetAxios(
+          const { data } = await axios.get(
             `http://195.35.56.202:8080/post/category/${post_id}`
           );
           setCatPost(data);

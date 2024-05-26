@@ -201,12 +201,11 @@ const Post = () => {
                   <Link to={`/user/${comment.user_id}`}>
                     {comment.username}
                   </Link>
+
+
                 </div>
                 <div>
-                  <p>
-                    {comment.likes}&nbsp;
-                    <img style={{ width: "20px" }} src={like} alt="" />
-                  </p>
+                  <p>{getTimeElapsed(comment?.cdate)}</p>
                 </div>
               </div>
               <hr />
@@ -223,6 +222,10 @@ const Post = () => {
                     Like
                   </button>
                 ) : null}
+                <p>
+                  {comment.likes}&nbsp;
+                  <img style={{ width: "20px" }} src={like} alt="" />
+                </p>
               </div>
             </div>
           ))}

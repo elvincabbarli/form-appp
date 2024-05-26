@@ -47,8 +47,8 @@ const AddPost = () => {
     formData.append("heading", postData.heading);
     formData.append("content", postData.content);
     formData.append("category_id", postData.categoryId);
-    postData.images.forEach((image) => {
-      formData.append("images", image);
+    postData.images.forEach((image, index) => {
+      formData.append(`images[${index}]`, image);
     });
 
     try {

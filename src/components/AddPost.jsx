@@ -38,6 +38,11 @@ const AddPost = () => {
   };
 
   const sendToServer = async () => {
+    if (!postData.heading || !postData.content || !postData.categoryId) {
+      toast.error("Bütün sahələri doldurun.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("heading", postData.heading);
     formData.append("content", postData.content);
@@ -139,7 +144,7 @@ const AddPost = () => {
       />
 
       <div className="post-header-2">
-        <label style={{ marginBottom: "10x" }} htmlFor="images">
+        <label style={{ marginBottom: "10px" }} htmlFor="images">
           <b>Şəkillər</b>
         </label>
         <input

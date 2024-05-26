@@ -150,7 +150,7 @@ const AddPost = () => {
         <input
           type="file"
           className="custom-file-input"
-          accept="image/*"
+          accept="image/*,image/gif"
           id="images"
           multiple
           onChange={handleImageChange}

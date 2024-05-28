@@ -11,6 +11,7 @@ const PersonalInfo = () => {
   );
   const dispatch = useDispatch()
   const [userData, setUserdata] = useState([])
+  const [userNotify, setUserNotify] = useState([])
   const { token } = useSelector((state) => state.login)
 
   const fetchPersonalInteredtData = async () => {
@@ -24,9 +25,21 @@ const PersonalInfo = () => {
     }
   };
 
+  const fetchPersonalNotifications = async () => {
+    try {
+      const response = await GetAxios("http://195.35.56.202:8080/notifications", token);
+      setUserNotify(response.data)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
     fetchPersonalInteredtData();
+    fetchPersonalNotifications()
   }, []);
+
+  // console.log(userNotify)
 
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -88,7 +101,7 @@ const PersonalInfo = () => {
           </div>
           <div className="welcome-note">
             <span className="nots">Bildirim: </span>
-            <span>9</span>
+            <b>{userNotify.length}</b>
           </div>
         </div>
       </div>

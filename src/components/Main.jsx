@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -19,23 +19,6 @@ const Main = () => {
   const { token } = useSelector((state) => state.login);
   const { isLoggedIn } = useSelector((state) => state.login);
   const [liked, setLiked] = useState();
-  const mainRef = useRef(null); // Reference to the main container element
-
-  useEffect(() => {
-    // Restore scroll position when returning to the main page
-    if (mainRef.current) {
-      const scrollPosition = JSON.parse(localStorage.getItem("scrollPosition"));
-      mainRef.current.scrollTop = scrollPosition || 0;
-    }
-  }, []);
-
-  const handleScroll = () => {
-    // Save scroll position when scrolling
-    if (mainRef.current) {
-      const scrollPosition = mainRef.current.scrollTop;
-      localStorage.setItem("scrollPosition", JSON.stringify(scrollPosition));
-    }
-  };
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -116,7 +99,7 @@ const Main = () => {
   };
 
   return (
-    <div ref={mainRef} onScroll={handleScroll} className="main-container">
+    <div>
       <h2 style={{ marginBottom: "15px" }}>Bütün Postlar</h2>
       <div className="search-container">
         <form

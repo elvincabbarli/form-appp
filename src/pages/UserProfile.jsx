@@ -75,9 +75,7 @@ const UserProfile = () => {
                 alt=""
               />
               &nbsp;
-              <Link to={`user/${result.user_id}`}>
                 <b>@{result.username}</b>
-              </Link>
             </div>
             <div>
               <p>{getTimeElapsed(result.cdate)}</p>

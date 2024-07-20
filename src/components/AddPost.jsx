@@ -13,7 +13,7 @@ const AddPost = () => {
   const [postData, setPostData] = useState({
     heading: "",
     content: "",
-    categoryId: "",
+    community_id: "",
     images: [],
   });
   const { interestAll } = useSelector((state) => state.interests);
@@ -38,7 +38,7 @@ const AddPost = () => {
   };
 
   const sendToServer = async () => {
-    if (!postData.heading || !postData.content || !postData.categoryId) {
+    if (!postData.heading || !postData.content || !postData.community_id) {
       toast.error("Bütün sahələri doldurun.");
       return;
     }
@@ -46,7 +46,7 @@ const AddPost = () => {
     const formData = new FormData();
     formData.append("heading", postData.heading);
     formData.append("content", postData.content);
-    formData.append("category_id", postData.categoryId);
+    formData.append("community_id", postData.community_id);
 
     // Append images in the order they were selected
     postData.images.forEach((image) => {
@@ -67,7 +67,7 @@ const AddPost = () => {
       setPostData({
         heading: "",
         content: "",
-        categoryId: "",
+        community_id: "",
         images: [],
       });
       toast.success("Paylaşıldı");
@@ -121,11 +121,11 @@ const AddPost = () => {
           <select
             name="category"
             id="category"
-            value={postData.categoryId}
+            value={postData.community_id}
             onChange={(e) =>
               setPostData((prevData) => ({
                 ...prevData,
-                categoryId: e.target.value,
+                community_id: e.target.value,
               }))
             }
           >

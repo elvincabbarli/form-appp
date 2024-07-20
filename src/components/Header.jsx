@@ -9,7 +9,7 @@ import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [showSec, setShowSec] = useState(false);
-
+  const { commentNot, likeNot } = useSelector((state) => state.post);
   const isActiveLink = (link) => {
     // Check if the current pathname matches the link exactly or if it's a subpath
     return location.pathname === link || location.pathname.startsWith(link)
@@ -34,6 +34,8 @@ const Navbar = () => {
             <Link to="/">
               <img src={logo} />
             </Link>
+            {commentNot ? <p>Comment var</p> : null}
+            {likeNot ? <p>Like var</p> : null}
           </div>
 
           <div className="right-sec">
@@ -145,10 +147,17 @@ const Navbar = () => {
               {!isLoggedIn && (
                 <>
                   <li>
-                    <Link onClick={() => setShowSec(!showSec)} to="/signin">Daxil Ol</Link>
+                    <Link onClick={() => setShowSec(!showSec)} to="/signin">
+                      Daxil Ol
+                    </Link>
                   </li>
                   <li>
-                    <Link onClick={() => setShowSec(!showSec)} to="/signup">Qeydiyyat</Link>
+                    <Link onClick={() => setShowSec(!showSec)} to="/signup">
+                      Qeydiyyat
+                    </Link>
+                    <Link onClick={() => setShowSec(!showSec)} to="/registr">
+                      Qeydiyyat-new
+                    </Link>
                   </li>
                 </>
               )}

@@ -6,7 +6,6 @@ import axios from "axios";
 import { getTimeElapsed } from "../utils/time";
 import like from "../assets/heart.png";
 import Slider from "react-slick";
-import { closeWebSocket, connectWebSocket } from "../utils/websocket";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -19,35 +18,7 @@ const Post = () => {
   const [commentError, setCommentError] = useState("");
   // const [socket, setSocket] = useState(null);
 
-  useEffect(() => {
-    // Establish WebSocket connection when component mounts
-    const userId = singlePost?.post?.user_id; // Assuming user_id is the identifier for notifications
-    const onMessageReceived = (notification) => {
-      // Handle WebSocket notifications
-      console.log("Received notification:", notification);
-      switch (notification.type) {
-        case "comment":
-          // Handle comment notification
-          console.log("New comment received:", notification.comment);
-          fetchPostData(); // Refresh post data when new comment is received
-          break;
-        case "like":
-          // Handle like notification
-          console.log("New like received:", notification.like);
-          fetchPostData(); // Refresh post data when new like is received
-          break;
-        default:
-          // Handle unknown notification types
-          break;
-      }
-    };
-    connectWebSocket(userId, onMessageReceived);
-  
-    return () => {
-      // Close WebSocket connection when component unmounts
-      closeWebSocket();
-    };
-  }, [singlePost?.post?.user_id]); 
+
 
   const fetchPostData = async () => {
     try {

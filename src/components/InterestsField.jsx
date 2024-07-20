@@ -85,7 +85,7 @@ function InterestsField() {
               name="interest"
               value={item.id}
               onChange={(event) => handleCheckboxChange(item, event)}
-              checked={!!personalInterest.find(arg => arg.id === item.id)}
+              // checked={!!personalInterest.find(arg => arg.id === item.id)}
               className="interest-checkbox"
             />
             {item.name}

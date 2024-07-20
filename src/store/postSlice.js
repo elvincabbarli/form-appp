@@ -15,7 +15,9 @@ const initialState = {
     loading: false,
     singlePost: [],
     error: null,
-    showMobile: false
+    showMobile: false,
+    commentNot: false,
+    likeNot: false
 };
 
 const myToken = JSON.parse(localStorage.getItem('userInfo'));
@@ -46,6 +48,12 @@ const postSlice = createSlice({
     reducers: {
         postSuccess: (state, action) => {
             state.personalPosts = action.payload
+        },
+        addCommentNot: (state) => {
+            state.commentNot = true
+        },
+        addLikeNot: (state) => {
+            state.likeNot = true
         },
         changeMobile: (state, action) => {
             state.showMobile = action.payload
@@ -87,6 +95,6 @@ const postSlice = createSlice({
     },
 });
 
-export const { postSuccess, changeMobile, singlePostSuccess, } = postSlice.actions;
+export const { postSuccess, changeMobile, singlePostSuccess, addCommentNot , addLikeNot } = postSlice.actions;
 
 export default postSlice.reducer;

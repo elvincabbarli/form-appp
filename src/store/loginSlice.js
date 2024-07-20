@@ -14,6 +14,7 @@ const initialState = {
     email: '',
     token: '',
     isLoggedIn: false,
+    user_id: ''
 };
 
 // Get user data from local storage when the application starts
@@ -27,6 +28,7 @@ if (userDataFromLocalStorage) {
     initialState.name = userDataFromLocalStorage.first_name;
     initialState.email = userDataFromLocalStorage.email;
     initialState.token = userDataFromLocalStorage.token;
+    initialState.user_id = userDataFromLocalStorage.user_id;
     initialState.isLoggedIn = true;
 }
 
@@ -40,6 +42,7 @@ const loginSlice = createSlice({
             state.name = action.payload.first_name;
             state.email = action.payload.email;
             state.token = action.payload.token;
+            state.user_id = action.payload.user_id;
             state.isLoggedIn = true;
             localStorage.setItem('userInfo', JSON.stringify(action.payload));
         },
